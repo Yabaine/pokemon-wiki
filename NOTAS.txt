@@ -1,0 +1,11 @@
+Back
+
+Wrangler 
+ https://my-worker.pokemon-wiki.workers.dev
+
+Inicializar entorno dev, y le decimos cual es el endpoint que queremos levantar
+npx wrangler dev src/index.js
+
+HONO
+Utilizamos este framework(parecido a express) ya que esta preparado para los cloudworkers
+
