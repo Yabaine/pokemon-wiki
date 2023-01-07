@@ -78,6 +78,5 @@ export const getGamePokedex = (poke: string) => {
     }
   });
 
-  console.log(game.name[0]);
   return [pokedex, game];
 };
