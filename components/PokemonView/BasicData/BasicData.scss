@@ -1,0 +1,35 @@
+.basic-data {
+  @apply flex text-slate-800;
+
+  &__title {
+    @apply text-3xl;
+  }
+
+  &__name {
+    @apply text-yellow-500 capitalize pl-2 font-semibold;
+  }
+
+  &__data {
+    @apply flex flex-col gap-10 flex-1 pl-5 text-xl font-semibold;
+  }
+
+  &__info {
+    @apply flex flex-col gap-5;
+  }
+
+  &__entry {
+    @apply flex flex-wrap align-middle text-left items-end;
+  }
+
+  &__detail {
+    @apply capitalize font-normal text-base pl-3;
+  }
+
+  &__details {
+    @apply capitalize font-normal text-base pl-3;
+  }
+
+  &__type {
+    @apply capitalize font-normal text-base pl-3;
+  }
+}

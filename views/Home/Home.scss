@@ -1,0 +1,19 @@
+.home {
+  @apply flex flex-col gap-4;
+
+  &__columns {
+    @apply grid grid-cols-5 gap-8;
+  }
+
+  &__container {
+    @apply container mx-auto p-5 bg-slate-400;
+  }
+
+  &__not-active {
+    @apply inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300;
+  }
+
+  /*   &__active {
+    @apply inline-block p-4 text-blue-600 rounded-t-lg border-b-2 border-blue-600 active dark:text-blue-500 dark:border-blue-500;
+  } */
+}

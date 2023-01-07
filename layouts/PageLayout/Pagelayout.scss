@@ -1,0 +1,7 @@
+.page-layout {
+  @apply relative  gap-4 justify-center items-center;
+
+  &__main {
+    @apply md:ml-24;
+  }
+}

@@ -1,0 +1,13 @@
+.modal {
+  @apply fixed top-0 left-0 w-24 h-full z-10 overflow-x-hidden hidden md:block;
+
+  &__overlay {
+    @apply fixed inset-0 z-40 bg-gray-800 opacity-50 backdrop-blur-md;
+  }
+  &__close {
+    @apply p-4 w-full text-left;
+  }
+  &__no-fullscreen {
+    @apply fixed top-1/4 left-1/2 translate-x-[-50%] translate-y-[-50%] w-6/12 z-50 h-96 overflow-auto bg-slate-800  rounded-lg flex flex-col;
+  }
+}

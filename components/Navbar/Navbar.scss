@@ -1,0 +1,7 @@
+.navbar {
+  @apply fixed top-0 left-0 w-24 h-full z-10 overflow-x-hidden hidden md:block;
+
+  &__container {
+    @apply h-full flex flex-col bg-slate-500 sticky text-center justify-center gap-10 z-10;
+  }
+}

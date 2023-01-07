@@ -1,0 +1,16 @@
+.poke-view {
+  @apply flex flex-col gap-4 bg-red-400;
+
+  &__container {
+    @apply flex flex-wrap flex-col container mx-auto p-5;
+  }
+  &__prev-next {
+    @apply flex justify-between;
+  }
+  &__prev-next-item {
+    @apply font-bold text-xl border-2 px-5 py-2;
+  }
+  &__scroll {
+    @apply relative h-64 overflow-auto;
+  }
+}

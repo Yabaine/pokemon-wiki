@@ -1,0 +1,9 @@
+.poke-list {
+  &__columns {
+    @apply grid grid-cols-3 gap-8 md:grid-cols-4 md:gap-6 xl:grid-cols-5;
+  }
+
+  &__not-active {
+    @apply inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300;
+  }
+}

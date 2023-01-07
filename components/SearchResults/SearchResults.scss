@@ -1,0 +1,13 @@
+.search-result {
+  &__list {
+    @apply p-1 text-blue-100 max-h-80 h-auto w-full relative overflow-auto;
+  }
+
+  &__item {
+    @apply p-4;
+  }
+
+  &__not-found {
+    @apply p-4 overflow-x-hidden text-center text-ellipsis whitespace-nowrap;
+  }
+}
