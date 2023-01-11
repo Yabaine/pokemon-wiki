@@ -4,7 +4,8 @@ import { Sprites } from '../../../types/models/Pokemon';
 import PokemonCard from '../PokemonCard';
 import { PokemonDetails } from '../../../types/models/Pokemon';
 import { PokemonSpecie } from '../../../types/models/PokemonSpecie';
-import { getGamePokedex } from '../../../utils';
+import { getGameFromPokedex } from '../../../backend/scrapper/index.mjs';
+import { MainPokedex } from '../../../lib/client/constants';
 
 type Props = {
   data: PokemonDetails;
@@ -20,8 +21,14 @@ type Handle = (url: string) => void;
 }[];
 
 
-
 type basicSprites = Omit<Sprites, 'versions'>; */
+
+//Regex remove all between first 3 letter and after a '-' is found
+const regex = new RegExp(/(?<=-).*/);
+
+const isMainPokedex = (pokedex: string) => {
+  return MainPokedex.includes(pokedex);
+};
 
 const BasicData: FC<Props> = ({ data, specie }) => {
   const b = withBem('basic-data');
@@ -63,13 +70,22 @@ const BasicData: FC<Props> = ({ data, specie }) => {
     );
   });
 
-  const game_indexs = specie.pokedex_numbers.map((entry, i) => {
-    let [pokedex, group] = getGamePokedex(entry.pokedex.name);
-    if (pokedex == undefined) return null;
+  const game_indexes = specie.pokedex_numbers.map((entry, i) => {
+    let mainGame = isMainPokedex(entry.pokedex.name);
+
+    if (!mainGame) {
+      return null;
+    }
+
+    let versions = getGameFromPokedex(entry.pokedex.name);
+    if (versions == undefined) return null;
+    let game = versions.map((games) =>
+      games.games.map((game: string) => `${game.charAt(0)}/`)
+    );
     return (
       <tr key={i}>
-        <td>{pokedex}</td>
-        <td>{entry.pokedex.name}</td>
+        <td className={b('game-indexes')}>{game}</td>
+        <td className={b('type')}>{entry.pokedex.name}</td>
         <td>{entry.entry_number}</td>
       </tr>
     );
@@ -105,9 +121,9 @@ const BasicData: FC<Props> = ({ data, specie }) => {
             </div>
             <div className={b('entry')}>
               <span>First appearance: </span>
-              <span className={b('detail')}>
-                {/* games(game_indices[0].version.name) */}
-              </span>
+              <span className={b('detail')}>{`GEN ${regex.exec(
+                specie.generation.name
+              )}`}</span>
             </div>
           </div>
           {/*           https://stackoverflow.com/questions/72272821/tailwind-css-table-with-fixed-header-and-scrolling-tbody-vertically
@@ -120,7 +136,7 @@ const BasicData: FC<Props> = ({ data, specie }) => {
                 <th>Local Nº</th>
               </tr>
             </thead>
-            <tbody>{game_indexs}</tbody>
+            <tbody>{game_indexes}</tbody>
           </table>
         </div>
 

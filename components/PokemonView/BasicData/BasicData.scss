@@ -22,7 +22,7 @@
   }
 
   &__detail {
-    @apply capitalize font-normal text-base pl-3;
+    @apply uppercase font-normal text-base pl-3;
   }
 
   &__details {
@@ -31,5 +31,8 @@
 
   &__type {
     @apply capitalize font-normal text-base pl-3;
+  }
+  &__game-indexes {
+    @apply uppercase;
   }
 }

@@ -1,0 +1,430 @@
+[
+  {
+    "gen": {
+      "name": "generation-i",
+      "alt-name": "GEN I",
+      "url": "https://pokeapi.co/api/v2/generation/1/"
+    },
+
+    "pokedex": [
+      {
+        "name": "national",
+        "id": 1,
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      },
+      {
+        "name": "kanto",
+        "id": 2,
+        "url": "https://pokeapi.co/api/v2/pokedex/2/"
+      }
+    ],
+    "versions": [
+      {
+        "versionName": "red-blue",
+        "versionID": 1,
+        "pokedexID": 2,
+        "games": ["red", "blue"],
+        "gamesAcronyms": ["R", "B"],
+        "url": "https://pokeapi.co/api/v2/version-group/1/"
+      },
+      {
+        "versionName": "yellow",
+        "versionID": 2,
+        "pokedexID": 2,
+        "games": ["yellow"],
+        "gamesAcronyms": ["Y"],
+        "url": "https://pokeapi.co/api/v2/version-group/2/"
+      }
+    ]
+  },
+  {
+    "gen": {
+      "name": "generation-ii",
+      "alt-name": "GEN II",
+      "url": "https://pokeapi.co/api/v2/generation/2/"
+    },
+    "pokedex": [
+      {
+        "name": "national",
+        "id": 1,
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      },
+      {
+        "name": "original-johto",
+        "id": 3,
+        "url": "https://pokeapi.co/api/v2/pokedex/3/"
+      }
+    ],
+
+    "versions": [
+      {
+        "versionName": "gold-silver",
+        "versionID": 3,
+        "pokedexID": 3,
+        "games": ["gold", "silver"],
+        "gamesAcronyms": ["G", "S"],
+        "url": "https://pokeapi.co/api/v2/version-group/3/"
+      },
+      {
+        "versionName": "crystal",
+        "versionID": 4,
+        "pokedexID": 3,
+        "games": ["crystal"],
+        "gamesAcronyms": ["C"],
+        "url": "https://pokeapi.co/api/v2/version-group/4/"
+      }
+    ]
+  },
+  {
+    "gen": {
+      "name": "generation-iii",
+      "alt-name": "GEN III",
+      "url": "https://pokeapi.co/api/v2/generation/3/"
+    },
+    "pokedex": [
+      {
+        "name": "national",
+        "id": 1,
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      },
+      { "name": "hoenn", "id": 4, "url": "https://pokeapi.co/api/v2/pokedex/4/" }
+    ],
+
+    "versions": [
+      {
+        "versionName": "ruby-sapphire",
+        "versionID": 5,
+        "pokedexID": 4,
+        "games": ["ruby", "sapphire"],
+        "gamesAcronyms": ["R", "S"],
+        "url": "https://pokeapi.co/api/v2/version-group/5/"
+      },
+      {
+        "versionName": "emerald",
+        "versionID": 6,
+        "pokedexID": 4,
+        "games": ["emerald"],
+        "gamesAcronyms": ["E"],
+        "url": "https://pokeapi.co/api/v2/version-group/6/"
+      },
+      {
+        "versionName": "firered-leafgreen",
+        "versionID": 7,
+        "pokedexID": 4,
+        "games": ["firered", "leafgreen"],
+        "gamesAcronyms": ["F", "L"],
+        "url": "https://pokeapi.co/api/v2/version-group/7/"
+      }
+    ]
+  },
+  {
+    "gen": {
+      "name": "generation-iv",
+      "alt-name": "GEN IV",
+      "url": "https://pokeapi.co/api/v2/generation/4/"
+    },
+    "pokedex": [
+      {
+        "name": "national",
+        "id": 1,
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      },
+      {
+        "name": "original-sinnoh",
+        "id": 5,
+        "url": "https://pokeapi.co/api/v2/pokedex/5/"
+      },
+      {
+        "name": "extended-sinnoh",
+        "id": 6,
+        "url": "https://pokeapi.co/api/v2/pokedex/6/"
+      },
+      {
+        "name": "updated-johto",
+        "id": 7,
+        "url": "https://pokeapi.co/api/v2/pokedex/7/"
+      }
+    ],
+
+    "versions": [
+      {
+        "versionName": "diamond-pearl",
+        "versionID": 8,
+        "pokedexID": 5,
+        "games": ["diamond", "pearl"],
+        "gamesAcronyms": ["D", "P"],
+        "url": "https://pokeapi.co/api/v2/version-group/8/"
+      },
+      {
+        "versionName": "platinum",
+        "versionID": 9,
+        "pokedexID": 6,
+        "games": ["platinum"],
+        "url": "https://pokeapi.co/api/v2/version-group/9/"
+      },
+      {
+        "versionName": "heartgold-soulsilver",
+        "versionID": 10,
+        "pokedexID": 7,
+        "games": ["heartgold", "soulsilver"],
+        "url": "https://pokeapi.co/api/v2/version-group/10/"
+      }
+    ]
+  },
+  {
+    "gen": {
+      "name": "generation-v",
+      "alt-name": "GEN V",
+      "url": "https://pokeapi.co/api/v2/generation/5/"
+    },
+    "pokedex": [
+      {
+        "name": "national",
+        "id": 1,
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      },
+      {
+        "name": "original-unova",
+        "id": 8,
+        "url": "https://pokeapi.co/api/v2/pokedex/8/"
+      },
+      {
+        "name": "updated-unova",
+        "id": 9,
+        "url": "https://pokeapi.co/api/v2/pokedex/9/"
+      }
+    ],
+
+    "versions": [
+      {
+        "versionName": "black-white",
+        "versionID": 11,
+        "pokedexID": 8,
+        "games": ["black", "white"],
+        "url": "https://pokeapi.co/api/v2/version-group/11/"
+      },
+      {
+        "versionName": "black-2-white-2",
+        "versionID": 14,
+        "pokedexID": 9,
+        "games": ["black-2", "white-2"],
+        "url": "https://pokeapi.co/api/v2/version-group/14/"
+      }
+    ]
+  },
+  {
+    "gen": {
+      "name": "generation-vi",
+      "alt-name": "GEN VI",
+      "url": "https://pokeapi.co/api/v2/generation/6/"
+    },
+    "pokedex": [
+      {
+        "name": "national",
+        "id": 1,
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      },
+      {
+        "name": "kalos-central",
+        "id": 12,
+        "url": "https://pokeapi.co/api/v2/pokedex/12/"
+      },
+      {
+        "name": "kalos-coastal",
+        "id": 13,
+        "url": "https://pokeapi.co/api/v2/pokedex/13/"
+      },
+      {
+        "name": "kalos-mountain",
+        "id": 14,
+        "url": "https://pokeapi.co/api/v2/pokedex/14/"
+      },
+      {
+        "name": "updated-hoenn",
+        "id": 15,
+        "url": "https://pokeapi.co/api/v2/pokedex/15/"
+      }
+    ],
+
+    "versions": [
+      {
+        "versionName": "x-y",
+        "versionID": 15,
+        "games": ["x", "y"],
+        "url": "https://pokeapi.co/api/v2/version-group/15/"
+      },
+      {
+        "versionName": "omega-ruby-alpha-sapphire",
+        "versionID": 16,
+        "games": ["omega-ruby", "alpha-sapphire"],
+        "url": "https://pokeapi.co/api/v2/version-group/16/"
+      }
+    ]
+  },
+  {
+    "gen": {
+      "name": "generation-vii",
+      "alt-name": "GEN VII",
+      "url": "https://pokeapi.co/api/v2/generation/7/"
+    },
+    "pokedex": [
+      {
+        "name": "national",
+        "id": 1,
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      },
+      {
+        "name": "original-alola",
+        "id": 16,
+        "url": "https://pokeapi.co/api/v2/pokedex/16/"
+      },
+      {
+        "name": "original-melemele",
+        "id": 17,
+        "url": "https://pokeapi.co/api/v2/pokedex/17/"
+      },
+      {
+        "name": "original-akala",
+        "id": 18,
+        "url": "https://pokeapi.co/api/v2/pokedex/18/"
+      },
+      {
+        "name": "original-ulaula",
+        "id": 19,
+        "url": "https://pokeapi.co/api/v2/pokedex/19/"
+      },
+      {
+        "name": "original-poni",
+        "id": 20,
+        "url": "https://pokeapi.co/api/v2/pokedex/20/"
+      },
+      {
+        "name": "updated-alola",
+        "id": 21,
+        "url": "https://pokeapi.co/api/v2/pokedex/21/"
+      },
+      {
+        "name": "updated-melemele",
+        "id": 22,
+        "url": "https://pokeapi.co/api/v2/pokedex/22/"
+      },
+      {
+        "name": "updated-akala",
+        "id": 23,
+        "url": "https://pokeapi.co/api/v2/pokedex/23/"
+      },
+      {
+        "name": "updated-ulaula",
+        "id": 24,
+        "url": "https://pokeapi.co/api/v2/pokedex/24/"
+      },
+      {
+        "name": "updated-poni",
+        "id": 25,
+        "url": "https://pokeapi.co/api/v2/pokedex/25/"
+      },
+      {
+        "name": "letsgo-kanto",
+        "id": 26,
+        "url": "https://pokeapi.co/api/v2/pokedex/26/"
+      }
+    ],
+
+    "versions": [
+      {
+        "versionName": "sun-moon",
+        "versionID": 17,
+        "pokedexID": 16,
+        "games": ["sun", "moon"],
+        "url": "https://pokeapi.co/api/v2/version-group/17/"
+      },
+
+      {
+        "versionName": "ultra-sun-ultra-moon",
+        "versionID": 18,
+        "pokedexID": 21,
+        "games": ["ultra-sun", "ultra-moon"],
+        "url": "https://pokeapi.co/api/v2/version-group/18/"
+      },
+      {
+        "versionName": "lets-go-pikachu-lets-go-eevee",
+        "versionID": 19,
+        "pokedexID": 26,
+        "games": ["lets-go-pikachu", "lets-go-eevee"],
+        "url": "https://pokeapi.co/api/v2/version-group/19/"
+      }
+    ]
+  },
+  {
+    "gen": {
+      "name": "generation-viii",
+      "alt-name": "GEN VIII",
+      "url": "https://pokeapi.co/api/v2/generation/8/"
+    },
+    "pokedex": [
+      {
+        "name": "national",
+        "id": 1,
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      },
+      {
+        "name": "galar",
+        "id": 27,
+        "url": "https://pokeapi.co/api/v2/pokedex/27/"
+      },
+      {
+        "name": "isle-of-armor",
+        "id": 28,
+        "url": "https://pokeapi.co/api/v2/pokedex/28/"
+      },
+      {
+        "name": "crown-tundra",
+        "id": 29,
+        "url": "https://pokeapi.co/api/v2/pokedex/29/"
+      },
+      {
+        "name": "hisui",
+        "id": 30,
+        "url": "https://pokeapi.co/api/v2/pokedex/30/"
+      }
+    ],
+
+    "versions": [
+      {
+        "versionName": "sword-shield",
+        "versionID": 20,
+        "pokedexID": 27,
+        "games": ["sword", "shield"],
+        "url": "https://pokeapi.co/api/v2/version-group/20/"
+      },
+      {
+        "versionName": "the-isle-of-armor",
+        "versionID": 21,
+        "pokedexID": 28,
+        "games": ["the-isle-of-armor"],
+        "url": "https://pokeapi.co/api/v2/version-group/21/"
+      },
+      {
+        "versionName": "the-crown-tundra",
+        "versionID": 22,
+        "pokedexID": 29,
+        "games": ["the-crown-tundra"],
+        "url": "https://pokeapi.co/api/v2/version-group/22/"
+      },
+      {
+        "versionName": "brilliant-diamond-and-shining-pearl",
+        "versionID": 23,
+        "pokedexID": 6,
+        "games": ["brilliant-diamond", "shining-pearl"],
+        "url": "https://pokeapi.co/api/v2/version-group/23/"
+      },
+      {
+        "versionName": "legend-arceus",
+        "versionID": 24,
+        "pokedexID": 30,
+        "games": ["legends-arceus"],
+        "url": "https://pokeapi.co/api/v2/version-group/39/"
+      }
+    ]
+  }
+]

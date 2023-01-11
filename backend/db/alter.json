@@ -1,0 +1,98 @@
+[
+  {
+    "gen": {
+      "name": "generation-i",
+      "alt-name": "GEN I",
+      "url": "https://pokeapi.co/api/v2/generation/1/"
+    },
+
+    "pokedex": {
+      "kanto": {
+        "name": "kanto",
+        "id": 1,
+        "url": "https://pokeapi.co/api/v2/pokedex/2/"
+      }
+    },
+    "versions": {
+      "red-blue": {
+        "versionName": "red-blue",
+        "versionID": 1,
+        "pokedexID": 1,
+        "games": ["red", "blue"],
+        "url": "https://pokeapi.co/api/v2/version-group/1/"
+      },
+      "yellow": {
+        "versionName": "yellow",
+        "versionID": 2,
+        "pokedexID": 1,
+        "games": ["yellow"],
+        "url": "https://pokeapi.co/api/v2/version-group/2/"
+      }
+    }
+  },
+  {
+    "gen": {
+      "name": "generation-ii",
+      "alt-name": "GEN II",
+      "url": "https://pokeapi.co/api/v2/generation/1/"
+    },
+    "pokedex": {
+      "original-johto": {
+        "name": "original-johto",
+        "id": 3,
+        "url": "https://pokeapi.co/api/v2/pokedex/3/"
+      }
+    },
+
+    "versions": {
+      "gold-silver": {
+        "versionName": "gold-silver",
+        "versionID": 3,
+        "pokedexID": 3,
+        "games": ["gold", "silver"],
+        "url": "https://pokeapi.co/api/v2/version-group/3/"
+      },
+      "crystal": {
+        "versionName": "crystal",
+        "versionID": 4,
+        "pokedexID": 3,
+        "games": ["crystal"],
+        "url": "https://pokeapi.co/api/v2/version-group/4/"
+      }
+    }
+  },
+  {
+    "gen": {
+      "name": "generation-iii",
+      "alt-name": "GEN III",
+      "url": "https://pokeapi.co/api/v2/generation/3/"
+    },
+    "pokedex": {
+      "hoenn": { "name": "hoenn", "id": 4, "url": "https://pokeapi.co/api/v2/pokedex/4/" }
+    },
+
+    "versions": {
+      "ruby-sapphire": {
+        "versionName": "ruby-sapphire",
+        "versionID": 5,
+        "pokedexID": 4,
+        "games": ["ruby", "sapphire"],
+        "url": "https://pokeapi.co/api/v2/version-group/5/"
+      },
+      "emerald": {
+        "versionName": "emerald",
+        "versionID": 6,
+        "pokedexID": 4,
+        "games": ["emerald"],
+        "url": "https://pokeapi.co/api/v2/version-group/6/"
+      },
+      "firered-leafgreen": {
+        "versionName": "firered-leafgreen",
+        "versionID": 7,
+        "pokedexID": 4,
+        "games": ["firered", "leafgreen"],
+        "url": "https://pokeapi.co/api/v2/version-group/7/"
+      }
+    }
+  }
+]

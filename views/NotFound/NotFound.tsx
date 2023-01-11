@@ -13,11 +13,7 @@ const NotFound: FC = () => {
         title="Page not found 404"
         icon={<FaCat />}
         message={<p>Page you are looking for does not exist.</p>}
-        link={
-          <Link href="/">
-            <a>Return Home</a>
-          </Link>
-        }
+        link={<Link href="/">Return Home</Link>}
       />
     </div>
   );
