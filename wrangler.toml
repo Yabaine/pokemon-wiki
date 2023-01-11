@@ -1,3 +1,3 @@
 name = "pokemon-wiki-api"
-main = "backend/api/index.js"
+main = "backend/api/index.mjs"
 compatibility_date = "2023-01-07"

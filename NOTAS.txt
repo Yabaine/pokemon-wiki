@@ -9,3 +9,84 @@ npx wrangler dev src/index.js
 HONO
 Utilizamos este framework(parecido a express) ya que esta preparado para los cloudworkers
 
+Object loop
+let foods = {
+  apples: 25,
+  oranges: 32,
+  plums: 28,
+  bananas: 13,
+  grapes: 35,
+  strawberries: 27
+};
+
+// elimina los elementos que coinciden con array elem
+let elem = ['oranges', 'plums', 'strawberries']
+for (let i=0; i < elem.length; i++){
+
+  delete foods[elem[i]]
+}
+
+console.log(foods);
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Check if it has property with hasOwnProperty and every
+let users = {
+  Alan: {
+    age: 27,
+    online: true,
+  },
+  Jeff: {
+    age: 32,
+    online: true,
+  },
+  Sarah: {
+    age: 48,
+    online: true,
+  },
+  Ryan: {
+    age: 19,
+    online: true,
+  },
+};
+
+function isEveryoneHere(userObj) {
+  // Only change code below this line
+
+  return ['Alan', 'Jeff', 'Sarah', 'Ryan'].every((name) => userObj.hasOwnProperty(name));
+
+  // Only change code above this line
+}
+
+console.log(isEveryoneHere(users));
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+loop Objects different names
+
+const users = {
+  Alan: {
+    online: false,
+  },
+  Jeff: {
+    online: true,
+  },
+  Sarah: {
+    online: false,
+  },
+};
+
+function countOnline(usersObj) {
+  // Only change code below this line
+  let count = 0;
+  for (let user in usersObj) {
+    if (usersObj[user].online == true) {
+      count++;
+    }
+  }
+
+  return count;
+  // Only change code above this line
+}
+
+console.log(countOnline(users));
+ +++++++++++++++++++++++++++++++++++++++

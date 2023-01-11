@@ -21,7 +21,7 @@
     "**/*.tsx",
     "additional.d.ts",
     "HOC/with-CSR.js",
-    "backend/api/index.js"
+    "backend/api/index.mjs"
   ],
   "exclude": [
     "node_modules",
