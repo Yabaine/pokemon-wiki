@@ -30,7 +30,7 @@ const Content: FC<Props> = ({ pokemon, specie }) => {
       break;
   }
 
-  return <nav className={b()}>{content}</nav>;
+  return <div className={b()}>{content}</div>;
 };
 
 export default Content;

@@ -27,7 +27,29 @@ const General: FC<Props> = ({ pokemon, specie }) => {
     </div>
   );
 
-  return <div className={b('container')}>{abilities}</div>;
+  const evolutions: JSX.Element = (
+    <div>
+      {specie.evolves_from_species ? (
+        <div>
+          <h3>Evolution from:</h3>
+          <p>{specie.evolves_from_species.name}</p>
+        </div>
+      ) : null}
+      {specie.evolution_chain ? (
+        <div>
+          <h3>Evolution chain:</h3>
+          <p>{specie.evolution_chain.url}</p>
+        </div>
+      ) : null}
+    </div>
+  );
+
+  return (
+    <div className={b('container')}>
+      {abilities}
+      {evolutions}
+    </div>
+  );
 };
 
 export default General;
