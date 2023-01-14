@@ -1,4 +1,4 @@
-Back
+https://www.deviantart.com/mizzi-cat/art/C-Zorua-running-icon-294783243
 
 Wrangler 
  https://my-worker.pokemon-wiki.workers.dev
@@ -90,3 +90,19 @@ function countOnline(usersObj) {
 
 console.log(countOnline(users));
  +++++++++++++++++++++++++++++++++++++++
+
+TODO
+·1
+Recuperamos el json de mapaData genverpkdx en la pagina [ID], se podria recuperar esta información en la home, 
+pero nos obliga a navergar al home antes de poder ir a ninguna pagina /pokemon/[id].
+Se podria leer esta información desde el json de forma local ya que actualmente se hace una llamada a la api del proyecto
+
+Explicaciones
+
+Ç1 
+En vez de utilizar useQueries para recuperar los datos de la query que ya hemos hecho refetch en getStaticProps
+Utilizamos useQueryClient para recuperar los datos, de la otra forma tendriamos que añadir la funcion que hace
+la llamada a la api.
+El queryClient es el mismo que se inicializa en _app
+
+ 
