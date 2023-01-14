@@ -1,4 +1,4 @@
-import { GroupGenPoke, groupGenPoke } from '../lib/client/constants';
+/* import { GroupGenPoke, groupGenPoke } from '../lib/client/constants'; */
 
 export const uniqueString = (length: number) => {
   let result = '';
@@ -65,7 +65,7 @@ export const filterSearchTerm = (
 // loop through GroupGenPoke and get same value as parameter in pokedex property
 // return key of that value in GroupGenPoke object (gen1, gen2, etc) or undefined
 
-export const getGamePokedex = (poke: string) => {
+/* export const getGamePokedex = (poke: string) => {
   let pokedex: string | undefined;
   let game;
 
@@ -80,3 +80,4 @@ export const getGamePokedex = (poke: string) => {
 
   return [pokedex, game];
 };
+ */

@@ -24,6 +24,10 @@ const PokeNav: FC<Props> = ({ data }) => {
   /* const { pokesData } = useMemo(() => nextPrevPoke(data.id), [data.id]); */
   const { pokesData } = nextPrevPoke(data.id);
 
+  //Se podria poner el nombre del pokemon en la url, pero a veces los nombreID
+  // de los pokemon no coinciden con los endpoints y causa problemas
+  /* let nextPage = `${!pokesData.next ? '' : pokesData.next.name}`;
+  let prevPage = `${!pokesData.prev ? '' : pokesData.prev.name}`; */
   let nextPage = data.id + 1;
   let prevPage = data.id - 1;
   let nextPoke = data.id < 905;
@@ -36,42 +40,39 @@ const PokeNav: FC<Props> = ({ data }) => {
   const prev_next = `prev-next${!prevPoke ? '-end' : ''}`;
 
   return (
-    <>
-      <div className={b(prev_next)}>
-        {prevPoke && (
-          <Link prefetch={false} href={`/pokemon/${prevPage}`} passHref>
-            <div className={b('prev-next-item')}>
-              <div>{prevPage}</div>
-              <div>{POKE_PREV_NAME}</div>
-              <Image
-                className={b('sprite')}
-                src={toString(POKE_PREV_SPRITE)}
-                width={50}
-                height={50}
-                alt={'pokemon'}
-              ></Image>
-            </div>
-          </Link>
-        )}
-        {nextPoke && (
-          <Link prefetch={false} href={`/pokemon/${nextPage}`} passHref>
-            <div className={b(`prev-next-item`)}>
-              {' '}
-              <Image
-                className={b('sprite')}
-                src={toString(POKE_NEXT_SPRITE)}
-                width={50}
-                height={50}
-                alt={'pokemon'}
-              ></Image>
-              <div>{POKE_NEXT_NAME}</div>
-              <div>{nextPage}</div>
-            </div>
-          </Link>
-        )}
-      </div>
-      <hr className={b('line')}></hr>
-    </>
+    <div className={b(prev_next)}>
+      {prevPoke && (
+        <Link href={`/pokemon/${prevPage}`} passHref>
+          <div className={b('prev-next-item')}>
+            <span>{prevPage}</span>
+            <span>{POKE_PREV_NAME}</span>
+            <Image
+              className={b('sprite')}
+              src={toString(POKE_PREV_SPRITE)}
+              width={50}
+              height={50}
+              alt={'pokemon'}
+            ></Image>
+          </div>
+        </Link>
+      )}
+      {nextPoke && (
+        <Link href={`/pokemon/${nextPage}`} passHref>
+          <div className={b(`prev-next-item`)}>
+            {' '}
+            <Image
+              className={b('sprite')}
+              src={toString(POKE_NEXT_SPRITE)}
+              width={50}
+              height={50}
+              alt={'pokemon'}
+            ></Image>
+            <span>{POKE_NEXT_NAME}</span>
+            <span>{nextPage}</span>
+          </div>
+        </Link>
+      )}
+    </div>
   );
 };
 

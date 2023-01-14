@@ -6,10 +6,12 @@ import { PokemonDetails } from '../../../types/models/Pokemon';
 import { PokemonSpecie } from '../../../types/models/PokemonSpecie';
 import { getGameFromPokedex } from '../../../backend/scrapper/index.mjs';
 import { MainPokedex } from '../../../lib/client/constants';
+import { GroupGenPokeDX } from '../../../lib/client/constants';
 
 type Props = {
   data: PokemonDetails;
   specie: PokemonSpecie;
+  mapped: GroupGenPokeDX;
 };
 
 type Handle = (url: string) => void;
@@ -30,7 +32,7 @@ const isMainPokedex = (pokedex: string) => {
   return MainPokedex.includes(pokedex);
 };
 
-const BasicData: FC<Props> = ({ data, specie }) => {
+const BasicData: FC<Props> = ({ data, specie, mapped }) => {
   const b = withBem('basic-data');
 
   const {
@@ -77,14 +79,12 @@ const BasicData: FC<Props> = ({ data, specie }) => {
       return null;
     }
 
-    let versions = getGameFromPokedex(entry.pokedex.name);
-    if (versions == undefined) return null;
-    let game = versions.map((games) =>
-      games.games.map((game: string) => `${game.charAt(0)}/`)
-    );
+    let games = getGameFromPokedex(entry.pokedex.name, mapped);
+    if (games == undefined) return null;
+
     return (
-      <tr key={i}>
-        <td className={b('game-indexes')}>{game}</td>
+      <tr className={b('table-items')} key={i}>
+        <td className={b('game-indexes')}>{games}</td>
         <td className={b('type')}>{entry.pokedex.name}</td>
         <td>{entry.entry_number}</td>
       </tr>
@@ -128,16 +128,18 @@ const BasicData: FC<Props> = ({ data, specie }) => {
           </div>
           {/*           https://stackoverflow.com/questions/72272821/tailwind-css-table-with-fixed-header-and-scrolling-tbody-vertically
            */}{' '}
-          <table className="table-auto">
-            <thead>
-              <tr>
-                <th>Game</th>
-                <th>Pokedex</th>
-                <th>Local Nº</th>
-              </tr>
-            </thead>
-            <tbody>{game_indexes}</tbody>
-          </table>
+          <div className={b('table-auto')}>
+            <table className={'w-full'}>
+              <thead className={b('thead')}>
+                <tr>
+                  <th className={'p-2'}>Games</th>
+                  <th>Pokedex</th>
+                  <th>Local Nº</th>
+                </tr>
+              </thead>
+              <tbody className={b('tbody')}>{game_indexes}</tbody>
+            </table>
+          </div>
         </div>
 
         <PokemonCard name={data.name} sprites={data.sprites} />

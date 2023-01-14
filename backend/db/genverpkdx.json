@@ -110,9 +110,9 @@
       {
         "versionName": "firered-leafgreen",
         "versionID": 7,
-        "pokedexID": 4,
+        "pokedexID": 2,
         "games": ["firered", "leafgreen"],
-        "gamesAcronyms": ["F", "L"],
+        "gamesAcronyms": ["FR", "LG"],
         "url": "https://pokeapi.co/api/v2/version-group/7/"
       }
     ]
@@ -160,6 +160,7 @@
         "versionID": 9,
         "pokedexID": 6,
         "games": ["platinum"],
+        "gamesAcronyms": ["P"],
         "url": "https://pokeapi.co/api/v2/version-group/9/"
       },
       {
@@ -167,6 +168,7 @@
         "versionID": 10,
         "pokedexID": 7,
         "games": ["heartgold", "soulsilver"],
+        "gamesAcronyms": ["HG", "SS"],
         "url": "https://pokeapi.co/api/v2/version-group/10/"
       }
     ]
@@ -201,6 +203,7 @@
         "versionID": 11,
         "pokedexID": 8,
         "games": ["black", "white"],
+        "gamesAcronyms": ["B", "W"],
         "url": "https://pokeapi.co/api/v2/version-group/11/"
       },
       {
@@ -208,6 +211,7 @@
         "versionID": 14,
         "pokedexID": 9,
         "games": ["black-2", "white-2"],
+        "gamesAcronyms": ["B2", "W2"],
         "url": "https://pokeapi.co/api/v2/version-group/14/"
       }
     ]
@@ -250,13 +254,17 @@
       {
         "versionName": "x-y",
         "versionID": 15,
+        "pokedexID": 12,
         "games": ["x", "y"],
+        "gamesAcronyms": ["X", "Y"],
         "url": "https://pokeapi.co/api/v2/version-group/15/"
       },
       {
         "versionName": "omega-ruby-alpha-sapphire",
         "versionID": 16,
+        "pokedexID": 15,
         "games": ["omega-ruby", "alpha-sapphire"],
+        "gamesAcronyms": ["OR", "AS"],
         "url": "https://pokeapi.co/api/v2/version-group/16/"
       }
     ]
@@ -336,6 +344,7 @@
         "versionID": 17,
         "pokedexID": 16,
         "games": ["sun", "moon"],
+        "gamesAcronyms": ["S", "M"],
         "url": "https://pokeapi.co/api/v2/version-group/17/"
       },
 
@@ -344,6 +353,7 @@
         "versionID": 18,
         "pokedexID": 21,
         "games": ["ultra-sun", "ultra-moon"],
+        "gamesAcronyms": ["US", "UM"],
         "url": "https://pokeapi.co/api/v2/version-group/18/"
       },
       {
@@ -351,6 +361,7 @@
         "versionID": 19,
         "pokedexID": 26,
         "games": ["lets-go-pikachu", "lets-go-eevee"],
+        "gamesAcronyms": ["LGP", "LGE"],
         "url": "https://pokeapi.co/api/v2/version-group/19/"
       }
     ]
@@ -395,6 +406,7 @@
         "versionID": 20,
         "pokedexID": 27,
         "games": ["sword", "shield"],
+        "gamesAcronyms": ["SW", "SH"],
         "url": "https://pokeapi.co/api/v2/version-group/20/"
       },
       {
@@ -423,6 +435,7 @@
         "versionID": 24,
         "pokedexID": 30,
         "games": ["legends-arceus"],
+        "gamesAcronyms": ["LA"],
         "url": "https://pokeapi.co/api/v2/version-group/39/"
       }
     ]

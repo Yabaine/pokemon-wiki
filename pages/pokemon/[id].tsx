@@ -9,6 +9,7 @@ import { usePokeSpecie } from '../../lib/client/react-query/pokemon/usePokeSpeci
 import { usePokemon } from '../../lib/client/react-query/pokemon/usePokemon';
 import { PokemonDetails } from '../../types/models/Pokemon';
 import { PokemonSpecie } from '../../types/models/PokemonSpecie';
+import { GroupGenPokeDX } from '../../lib/client/constants';
 import axiosInstance from '../../lib/client/react-query/axios';
 
 type Props = {
@@ -19,7 +20,7 @@ const Pokemon: FC<Props> = ({ title }) => {
   return (
     <PageLayout>
       <Head>
-        <title>{title}</title>
+        <title style={{ textTransform: 'capitalize' }}>{`Pokemón ${title}`}</title>
       </Head>
       <PokeView></PokeView>
     </PageLayout>
@@ -64,6 +65,7 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async ({ params }: any) => {
   const queryClient = new QueryClient();
   const id = params?.id as string;
+  let title = '';
 
   /* await queryClient.prefetchQuery(['pokemonDetails', id], () => usePokemon(id)); */
 
@@ -79,18 +81,30 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
     const response = await axiosInstance.get<PokemonSpecie>(
       `https://pokeapi.co/api/v2/pokemon-species/${id}`
     );
+    title = response.data.name;
     return response.data;
   };
+
+  async function getMapData() {
+    const response = await axiosInstance.get<GroupGenPokeDX>(
+      /* `http://127.0.0.1:8787/genverpkdx` */
+      'https://pokemon-wiki-api.pokemon-wiki.workers.dev/genverpkdx'
+    );
+    return response.data;
+  }
 
   await Promise.all([
     queryClient.prefetchQuery(['pokemonDetails', id], () => getPokemon(id)),
     queryClient.prefetchQuery(['pokemonSpecie', id], () => getSpecie(id)),
+    queryClient.fetchQuery(['mapaData'], () => getMapData()),
   ]);
+
+  /* ·1 */
 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
-      title: id,
+      title: title,
     },
   };
 };

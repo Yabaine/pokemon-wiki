@@ -1,0 +1,9 @@
+.tabs {
+  &__tablist {
+    @apply w-full flex gap-10 pb-2 text-xl font-semibold border-b-2 mb-6 border-x-gray-500;
+  }
+
+  &__tab {
+    @apply flex gap-2 items-center capitalize;
+  }
+}

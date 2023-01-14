@@ -5,6 +5,8 @@ import axiosInstance from '../lib/client/react-query/axios';
 import { GetStaticProps } from 'next';
 import HomeView from '../views/Home/Home';
 import { PokemonType } from '../types/models/Pokemon';
+import { GroupGenPokeDX } from '../lib/client/constants';
+
 import {
   useQuery,
   useMutation,
@@ -34,8 +36,18 @@ export const getStaticProps: GetStaticProps = async () => {
     );
     return res.data;
   }
+  async function getMapData() {
+    const response = await axiosInstance.get<GroupGenPokeDX>(
+      `http://127.0.0.1:8787/genverpkdx`
+      /* 'https://pokemon-wiki-api.pokemon-wiki.workers.dev/genverpkdx' */
+    );
+    return response.data;
+  }
 
-  await queryClient.prefetchQuery(['allPokemon'], () => getMons());
+  await Promise.all([
+    queryClient.prefetchQuery(['allPokemon'], () => getMons()),
+    /* queryClient.prefetchQuery(['mapaData'], () => getMapData()), */
+  ]);
 
   return {
     props: {

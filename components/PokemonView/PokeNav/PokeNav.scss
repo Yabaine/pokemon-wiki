@@ -3,7 +3,7 @@
     @apply flex flex-col container mx-auto p-5;
   }
   &__prev-next {
-    @apply flex justify-between content-center font-semibold text-lg px-4 mb-2 capitalize;
+    @apply flex justify-between content-center font-semibold text-lg px-4 mb-6 pb-2 capitalize border-b;
     &-end {
       @apply ml-auto;
     }
@@ -11,7 +11,7 @@
   &__prev-next-item {
     @apply flex flex-row items-center justify-center gap-2;
   }
-  &__line {
+  /* &__line {
     @apply bg-gray-200 border-0 h-[2px] mb-8;
-  }
+  } */
 }

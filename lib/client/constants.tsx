@@ -1,3 +1,8 @@
+import { MdCatchingPokemon, MdMap } from 'react-icons/md';
+import { IoStatsChart, IoEggOutline } from 'react-icons/io5';
+import { GiCrossedSwords } from 'react-icons/gi';
+import { IconBaseProps } from 'react-icons';
+
 export interface VersionGroup {
   count: number;
   next: string;
@@ -158,29 +163,42 @@ export const Pokedex = {
   ],
 };
 
-export type groupGenPoke = {
+export type GroupGenPokeDX = {
   gen: {
     name: string;
     altName: string;
     url: string;
   };
   pokedex: {
-    [key: string]: {
-      name: string;
-      url: string;
-    };
-  };
+    name: string;
+    id: number;
+    url: string;
+  }[];
+
   group: {
-    [key: string]: {
-      name: {
-        [key: string]: string;
-      };
-      url: string;
-    };
+    versionName: string;
+    versionID: number;
+    pokedexID: number;
+    games: string[];
+    gamesAcronyms: string[];
+    url: string;
   };
 }[];
 
-export const GroupGenPoke: groupGenPoke = [
+type PokemonTabs = {
+  name: string;
+  icon: JSX.Element;
+};
+
+export const PokemonTabs = [
+  { name: 'general', icon: <MdCatchingPokemon /> },
+  { name: 'stats', icon: <IoStatsChart /> },
+  { name: 'location', icon: <MdMap /> },
+  { name: 'moveset', icon: <GiCrossedSwords /> },
+  { name: 'breeding', icon: <IoEggOutline /> },
+];
+
+/* export const GroupGenPoke: groupGenPoke = [
   {
     gen: {
       name: 'generation-i',
@@ -397,7 +415,7 @@ export const GroupGenPoke: groupGenPoke = [
       },
     },
   },
-];
+]; */
 
 export const MainPokedex = [
   'kanto',

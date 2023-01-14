@@ -18,7 +18,7 @@ import GENVERPKDX from '../db/genverpkdx.json' assert { type: 'json' };
 
 //from GENVERPKDX find games from gen then return them
 export function getGamesFromGens(gen) {
-  GENVERPKDX.find((el) => el.gen.name === gen)
+  const games = GENVERPKDX.find((el) => el.gen.name === gen)
     .versions.map((el) => el.games)
     .flat();
   return games;
@@ -42,22 +42,36 @@ export function getPokedexFromGames(game) {
 }
 
 //from GENVERPKDX get pokedex by game with Array method
-export function getGameFromPokedex(pkd) {
+export function getGameFromPokedex(pkd, mapped) {
   const versions = [];
   let pokedex = [pkd];
+  let pokdID;
 
-  pokedex.map((g) => {
-    let ver = GENVERPKDX.find((el) => el.pokedex.find((el) => el.name.includes(g)));
+  pokedex.map((pokedexName) => {
+    let ver = mapped.find((el) =>
+      el.pokedex.find((el) => {
+        if (el.name == pokedexName) {
+          pokdID = el.id;
+          return true;
+        }
+        return false;
+      })
+    );
     if (ver === undefined) {
     } else {
-      versions.push(ver.versions);
+      ver.versions.map((el) => {
+        if (pokdID == el.pokedexID) {
+          versions.push(el.gamesAcronyms);
+        }
+      });
     }
   });
-  //quitar duplicados y el flat es para que no quede un array dentro de otro
-  /*  return [...new Set(versions.flat())]; */
 
-  //convertir a Set para quitar duplicados y luego en array
-  return versions.flat();
+  let games = versions
+    .flat()
+    .map((game) => game)
+    .join('/');
+  return games;
 }
 
 /* await writeFile(`${DB_PATH}/prueba.json`, JSON.stringify(games, null, 2), 'utf-8'); */
