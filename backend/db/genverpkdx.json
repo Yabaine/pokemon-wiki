@@ -414,6 +414,7 @@
         "versionID": 21,
         "pokedexID": 28,
         "games": ["the-isle-of-armor"],
+        "gamesAcronyms": ["TIoF"],
         "url": "https://pokeapi.co/api/v2/version-group/21/"
       },
       {
@@ -421,6 +422,7 @@
         "versionID": 22,
         "pokedexID": 29,
         "games": ["the-crown-tundra"],
+        "gamesAcronyms": ["TCT"],
         "url": "https://pokeapi.co/api/v2/version-group/22/"
       },
       {
@@ -428,6 +430,7 @@
         "versionID": 23,
         "pokedexID": 6,
         "games": ["brilliant-diamond", "shining-pearl"],
+        "gamesAcronyms": ["BD", "SP"],
         "url": "https://pokeapi.co/api/v2/version-group/23/"
       },
       {
