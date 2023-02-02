@@ -4,6 +4,7 @@ import pokedex from '../db/pokedex.json';
 import generations from '../db/generations.json';
 import version from '../db/versions.json';
 import genverpkdx from '../db/genverpkdx.json';
+import regions from '../db/regions.json';
 
 const app = new Hono();
 
@@ -29,6 +30,10 @@ app.get('/', (ctx) => {
       endpoint: '/genverpkdx',
       description: 'List of all pokemon generations',
     },
+    {
+      endpoint: '/regions',
+      description: 'List of all regions',
+    },
   ]);
 });
 
@@ -50,6 +55,10 @@ app.get('/generations', (ctx) => {
 
 app.get('/genverpkdx', (ctx) => {
   return ctx.json(genverpkdx);
+});
+
+app.get('/regions', (ctx) => {
+  return ctx.json(regions);
 });
 
 export default app;
