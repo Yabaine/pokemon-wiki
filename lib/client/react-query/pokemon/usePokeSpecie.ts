@@ -12,6 +12,5 @@ import { PokemonSpecie } from '../../../../types/models/PokemonSpecie';
 
 export const usePokeSpecie = (id: string) => {
   const queryClient = useQueryClient();
-  const query = queryClient.getQueryData<PokemonSpecie>(['pokemonSpecie', id]);
-  return query;
+  return queryClient.getQueryData<PokemonSpecie>(['pokemonSpecie', id]);
 };

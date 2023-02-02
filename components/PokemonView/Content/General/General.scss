@@ -1,5 +1,63 @@
 .general {
-  &__container {
-    @apply h-full flex;
+  @apply flex flex-col gap-4;
+
+  &__evolution-line {
+    @apply flex w-full flex-col;
+  }
+
+  &__poke-line {
+    @apply flex justify-center items-center flex-col text-center capitalize md:flex-row;
+  }
+
+  &__poke-item {
+    @apply flex flex-col md:flex-row;
+  }
+
+  &__arrow-container {
+    @apply flex flex-col items-center gap-3 md:m-auto;
+  }
+
+  &__poke-line div:first-child div.general__arrow-container {
+    @apply hidden;
+  }
+
+  &__arrow-right {
+    @apply hidden md:block;
+  }
+
+  &__arrow-down {
+    @apply md:hidden;
+  }
+
+  &__table {
+    @apply w-full rounded-lg overflow-hidden;
+
+    tbody {
+      tr {
+        @apply items-center border-b-2;
+
+        th {
+          @apply p-3 text-left  bg-slate-500 capitalize;
+        }
+
+        td {
+          @apply p-2 bg-slate-400;
+
+          div {
+            @apply flex flex-wrap gap-2;
+            span {
+              @apply uppercase font-bold text-white text-xs rounded-sm  outline-1 outline pr-3 pl-3 pt-1 pb-1;
+            }
+          }
+        }
+      }
+      tr:last-child {
+        @apply border-b-0;
+      }
+    }
+  }
+
+  &__item-list {
+    @apply flex flex-col;
   }
 }

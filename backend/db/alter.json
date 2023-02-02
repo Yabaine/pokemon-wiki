@@ -2,7 +2,7 @@
   {
     "gen": {
       "name": "generation-i",
-      "alt-name": "GEN I",
+      "altName": "GEN I",
       "url": "https://pokeapi.co/api/v2/generation/1/"
     },
 
@@ -33,7 +33,7 @@
   {
     "gen": {
       "name": "generation-ii",
-      "alt-name": "GEN II",
+      "altName": "GEN II",
       "url": "https://pokeapi.co/api/v2/generation/1/"
     },
     "pokedex": {
@@ -64,7 +64,7 @@
   {
     "gen": {
       "name": "generation-iii",
-      "alt-name": "GEN III",
+      "altName": "GEN III",
       "url": "https://pokeapi.co/api/v2/generation/3/"
     },
     "pokedex": {

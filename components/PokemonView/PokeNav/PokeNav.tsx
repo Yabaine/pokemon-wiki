@@ -37,12 +37,13 @@ const PokeNav: FC<Props> = ({ data }) => {
   let POKE_NEXT_NAME = `${!pokesData.next ? '' : pokesData.next.name}`;
   let POKE_PREV_NAME = `${!pokesData.prev ? '' : pokesData.prev.name}`;
 
+  //Posicionar boton navegación derecha si no hay previo
   const prev_next = `prev-next${!prevPoke ? '-end' : ''}`;
 
   return (
     <div className={b(prev_next)}>
       {prevPoke && (
-        <Link href={`/pokemon/${prevPage}`} passHref>
+        <Link href={`/pokemon/${prevPage}`} prefetch={false}>
           <div className={b('prev-next-item')}>
             <span>{prevPage}</span>
             <span>{POKE_PREV_NAME}</span>
@@ -57,7 +58,7 @@ const PokeNav: FC<Props> = ({ data }) => {
         </Link>
       )}
       {nextPoke && (
-        <Link href={`/pokemon/${nextPage}`} passHref>
+        <Link href={`/pokemon/${nextPage}`} prefetch={false}>
           <div className={b(`prev-next-item`)}>
             {' '}
             <Image

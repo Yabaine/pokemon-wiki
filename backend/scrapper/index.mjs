@@ -18,60 +18,102 @@ import GENVERPKDX from '../db/genverpkdx.json' assert { type: 'json' };
 
 //from GENVERPKDX find games from gen then return them
 export function getGamesFromGens(gen) {
-  const games = GENVERPKDX.find((el) => el.gen.name === gen)
+  return GENVERPKDX.find((el) => el.gen.name === gen)
     .versions.map((el) => el.games)
     .flat();
-  return games;
 }
 
-//from GENVERPKDX get pokedex by game with Array method
+export function getVersionsGamesFromGens(gen) {
+  return GENVERPKDX.find((el) => el.gen.name === gen)
+    .versions.map((el) => el.versionName)
+    .flat();
+}
+
 export function getPokedexFromGames(game) {
   const games = [];
-  game.map((g, i) => {
+  game.map((_, i) => {
     games.push(
       GENVERPKDX.find((el) => el.versions.find((el) => el.games.includes(game[i])))
         .pokedex
     );
   });
 
-  //quitar duplicados y el flat es para que no quede un array dentro de otro
-  /* return [...new Set(games.flat())];  */
-
-  //convertir a Set para quitar duplicados y luego en array
   return [...new Set(games.flat())];
 }
 
-//from GENVERPKDX get pokedex by game with Array method
 export function getGameFromPokedex(pkd, mapped) {
-  const versions = [];
-  let pokedex = [pkd];
   let pokdID;
 
-  pokedex.map((pokedexName) => {
-    let ver = mapped.find((el) =>
+  return mapped
+    .find((el) =>
       el.pokedex.find((el) => {
-        if (el.name == pokedexName) {
+        if (el.name == pkd) {
           pokdID = el.id;
           return true;
         }
         return false;
       })
-    );
-    if (ver === undefined) {
-    } else {
-      ver.versions.map((el) => {
-        if (pokdID == el.pokedexID) {
-          versions.push(el.gamesAcronyms);
-        }
-      });
-    }
-  });
-
-  let games = versions
+    )
+    .versions.map((el) => {
+      if (pokdID == el.pokedexID) {
+        return el.gamesAcronyms;
+      }
+      return [];
+    })
     .flat()
-    .map((game) => game)
     .join('/');
-  return games;
+}
+
+export function getGenFromGame(games, mapped) {
+  let gens = [];
+  games.map((juego) => {
+    gens.push(
+      mapped.find((el) => {
+        return el.versions.find((ver) => {
+          return ver.games.includes(juego);
+        });
+      }).gen.altName
+    );
+  });
+  return [...new Set(gens)];
+}
+
+export function filterItemsByGen(gen, items) {
+  const games = getGamesFromGens(gen);
+
+  return items
+    .map((item) => {
+      return {
+        ...item,
+        version_details: item.version_details.filter((el) =>
+          games.includes(el.version.name)
+        ),
+      };
+    })
+    .filter((el) => el.version_details.length > 0);
+}
+
+export function getDescFromGames(gen, desc) {
+  const games = getGamesFromGens(gen);
+  return desc.filter((item) => {
+    return games.includes(item.version.name) && item.language.name == 'en';
+  });
+}
+
+export function getMovesFromPokemonByGen(gen, pokemon) {
+  const versionGames = getVersionsGamesFromGens(gen);
+
+  let moves = pokemon.moves
+    .map((move) => {
+      return {
+        ...move,
+        version_group_details: move.version_group_details.filter((el) =>
+          versionGames.includes(el.version_group.name)
+        ),
+      };
+    })
+    .filter((el) => el.version_group_details.length > 0);
+  return { moves: [...new Set(moves)], games: versionGames };
 }
 
 /* await writeFile(`${DB_PATH}/prueba.json`, JSON.stringify(games, null, 2), 'utf-8'); */

@@ -11,6 +11,5 @@ const getPokemon = async () => {
 };
 
 export const useAllPokemon = () => {
-  const query = useQuery<PokemonType, AxiosError>(['allPokemon'], () => getPokemon());
-  return query;
+  return useQuery<PokemonType, AxiosError>(['allPokemon'], () => getPokemon());
 };

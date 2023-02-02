@@ -8,6 +8,8 @@
 @import 'tw-utilities';
 
 :root {
+  --type-normal-color: #afafaf,
+  --type-fire-color: hsl(26, 85%, 56%),
   --navbar-height: 3.5rem;
   --footer-height: 3.5rem;
   --real-navbar-height: calc(var(--navbar-height) + 1px); // 1px border-bottom

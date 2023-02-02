@@ -8,6 +8,7 @@ type Props = {
 };
 
 const SuspenseWrapper: FC<Props> = ({ children, loaderType }) => {
+  // return <Suspense fallback={<Loading loaderType={loaderType} />}>{children}</Suspense>;
   return <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>;
 };
 

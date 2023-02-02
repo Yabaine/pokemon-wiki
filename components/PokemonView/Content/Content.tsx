@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
 import { withBem } from '../../../utils/bem';
-import General from './General';
+import General from './General/General2';
 import Stats from './Stats';
-import { useMainTab } from '../../../lib/client/providers/Zustand';
+import Location from './Location/Location';
+import Moveset from './Moveset/Moveset';
+import { useCurrentGen, useMainTab } from '../../../lib/client/providers/Zustand';
 import { PokemonSpecie } from '../../../types/models/PokemonSpecie';
 import { PokemonDetails } from '../../../types/models/Pokemon';
 
@@ -12,25 +14,37 @@ type Props = {
 };
 
 const Content: FC<Props> = ({ pokemon, specie }) => {
-  const b = withBem('general');
+  const b = withBem('content');
 
+  const currentGen = useCurrentGen((state) => state.currentGen);
   const activeTab = useMainTab((state) => state.tab);
 
-  let content;
+  let content: JSX.Element;
 
   switch (activeTab) {
     case 'general':
-      content = <General specie={specie} pokemon={pokemon} />;
+      content = <General currentGen={currentGen} specie={specie} pokemon={pokemon} />;
       break;
     case 'stats':
-      content = <Stats />;
+      content = <Stats specie={specie} pokemon={pokemon} />;
+      break;
+    case 'location':
+      content = (
+        <Location
+          currentGen={currentGen}
+          locationUrl={pokemon.location_area_encounters}
+        />
+      );
+      break;
+    case 'moveset':
+      content = <Moveset currentGen={currentGen} specie={specie} pokemon={pokemon} />;
       break;
     default:
-      content = <General specie={specie} pokemon={pokemon} />;
+      content = <General currentGen={currentGen} specie={specie} pokemon={pokemon} />;
       break;
   }
 
-  return <div className={b()}>{content}</div>;
+  return <div className={b('')}>{content}</div>;
 };
 
 export default Content;

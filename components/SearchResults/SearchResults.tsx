@@ -31,9 +31,10 @@ const SearchResults: FC = () => {
           </li>
         ) : (
           filtered?.map((poke) => {
+            let pokeID = poke.url.match(/\/(\d+)\//)?.[1];
             return (
-              <li onClick={() => setQuery('')} key={poke.name}>
-                <Link href={`/pokemon/${poke.name}`} prefetch={false}>
+              <li onClick={() => setQuery('')} key={pokeID}>
+                <Link href={`/pokemon/${pokeID}`} prefetch={false}>
                   {' '}
                   <CloseModal>{poke.name}</CloseModal>
                 </Link>

@@ -1,5 +1,3 @@
-/* import { GroupGenPoke, groupGenPoke } from '../lib/client/constants'; */
-
 export const uniqueString = (length: number) => {
   let result = '';
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -60,24 +58,3 @@ export const filterSearchTerm = (
       .join(joinBy)
   );
 };
-
-// create function getPokedex parameter poke
-// loop through GroupGenPoke and get same value as parameter in pokedex property
-// return key of that value in GroupGenPoke object (gen1, gen2, etc) or undefined
-
-/* export const getGamePokedex = (poke: string) => {
-  let pokedex: string | undefined;
-  let game;
-
-  GroupGenPoke.map((el) => {
-    if (el.pokedex[poke]?.name == poke) {
-      pokedex = el.pokedex[poke].name;
-      game = el.group;
-    } else {
-      return null;
-    }
-  });
-
-  return [pokedex, game];
-};
- */

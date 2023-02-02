@@ -1,0 +1,15 @@
+.labels {
+  @apply fixed flex flex-col gap-3 md:-ml-16 lg:-ml-32 text-xs top-[10%] z-30;
+
+  &__gen {
+    @apply text-left;
+  }
+
+  &__icon {
+    @apply text-left -rotate-90 text-2xl;
+  }
+
+  &__icon-main {
+    @apply text-left -rotate-90 text-2xl bg-purple-500;
+  }
+}

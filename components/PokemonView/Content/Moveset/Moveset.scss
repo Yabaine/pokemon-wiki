@@ -1,0 +1,15 @@
+.moveset {
+  @apply flex flex-col gap-5;
+
+  &__games {
+    @apply flex flex-row gap-4 m-auto;
+  }
+
+  &__game {
+    @apply bg-neutral-500 p-3 rounded-md capitalize;
+  }
+
+  &__moveset-container {
+    @apply flex flex-row;
+  }
+}

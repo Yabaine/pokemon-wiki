@@ -1,17 +1,8 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { withBem } from '../../../utils/bem';
-import { useAllPokemon } from '../../../lib/client/react-query/pokemon/useAllPokemon';
 import Image from 'next/image';
 import { Sprites } from '../../../types/models/Pokemon';
 import { toString } from '../../../lib/client/imageLoaders';
-import router from 'next/router';
-
-import {
-  Accordion,
-  AccordionBody,
-  AccordionHeader,
-  AccordionItem,
-} from 'react-headless-accordion';
 
 type Props = {
   sprites: Sprites;
@@ -30,41 +21,6 @@ type basicSprites = Omit<Sprites, 'versions'>;
 
 let arrSprites: arrSprite = [];
 
-/* const arrGens2: arrGen = [
-  {
-    showName: 'Back',
-    type: 'back_default',
-  },
-  {
-    showName: 'Back Female',
-    type: 'back_female',
-  },
-  {
-    showName: 'Back Shiny',
-    type: 'back_shiny',
-  },
-  {
-    showName: 'Back Shiny Female',
-    type: 'back_shiny_female',
-  },
-  {
-    showName: 'Front',
-    type: 'front_default',
-  },
-  {
-    showName: 'Front Female',
-    type: 'front_female',
-  },
-  {
-    showName: 'Front Shiny',
-    type: 'front_shiny',
-  },
-  {
-    showName: 'Front Shiny Female',
-    type: 'front_shiny_female',
-  },
-]; */
-
 const PokemonCard: FC<Props> = ({ sprites, name }) => {
   const b = withBem('poke-card');
   const [sprite, setSprite] = useState('');
@@ -76,6 +32,7 @@ const PokemonCard: FC<Props> = ({ sprites, name }) => {
 
   //https://stackoverflow.com/questions/67365459/dynamic-nested-accordion-with-nested-children
 
+  /* Ñ3 */
   const filter = useCallback(
     (sprites: Sprites) => {
       arrSprites = [];
@@ -113,7 +70,7 @@ const PokemonCard: FC<Props> = ({ sprites, name }) => {
   return (
     <>
       <div className={b('card')}>
-        <ul className={b('tabs')}>{genMap}</ul>
+        {/* <ul className={b('tabs')}>{genMap}</ul> */}
         <Image
           className={b('sprite')}
           //Convertimos data.sprite.. en string con este metodo

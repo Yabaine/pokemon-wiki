@@ -7,5 +7,8 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  serverRuntimeConfig: {
+    PROJECT_ROOT: __dirname,
+  },
   /* reactStrictMode: true, */
 };

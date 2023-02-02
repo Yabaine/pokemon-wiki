@@ -105,4 +105,18 @@ Utilizamos useQueryClient para recuperar los datos, de la otra forma tendriamos 
 la llamada a la api.
 El queryClient es el mismo que se inicializa en _app
 
+Consultas 
+Ñ1
+Validación undefined typescript, alguna forma de omitir?
+Ñ2
+Me da problemas si pongo tipo string ????
+Ñ3
+Nested Objects
+Ñ4
+Mejora ColorPicker?
+Ñ5
+Mejorar componente General
+
+
+
  

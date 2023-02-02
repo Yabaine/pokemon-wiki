@@ -1,5 +1,33 @@
 .stats {
-  &__container {
-    @apply h-full flex;
+  @apply flex flex-col gap-4;
+
+  &__table {
+    @apply flex flex-row w-full gap-10 m-auto justify-center max-w-md md:max-w-2xl;
+  }
+
+  &__other-stats {
+    @apply flex w-full flex-col;
+  }
+
+  &__tbody {
+    @apply flex flex-col gap-2 w-96;
+  }
+
+  &__bar {
+    @apply relative h-4 w-[340px] rounded-sm;
+    div {
+      @apply absolute bg-slate-500 h-full rounded-md;
+    }
+  }
+
+  &__thead {
+    @apply flex flex-col text-left capitalize;
+    th {
+      @apply flex flex-wrap text-center gap-5;
+    }
+  }
+
+  &__tr {
+    @apply flex gap-5 items-center text-left w-full;
   }
 }

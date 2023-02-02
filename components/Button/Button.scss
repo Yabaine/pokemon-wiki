@@ -1,0 +1,13 @@
+.button {
+  &__button {
+    @apply capitalize text-white p-5 rounded-md bg-slate-600 outline outline-2 outline-neutral-200;
+    &-main {
+      @apply capitalize text-white p-5 rounded-md bg-slate-600 outline outline-2 outline-amber-500;
+    }
+  }
+  &__button:disabled {
+    @apply capitalize text-white p-5 rounded-md bg-red-200;
+  }
+}
+
+/* ${value.length == 0 ? 'disabled' : ''} */

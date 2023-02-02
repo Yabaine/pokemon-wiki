@@ -1,0 +1,60 @@
+.table {
+  &__table-auto {
+    @apply m-auto overflow-y-auto block  no-scrollbar rounded justify-center w-auto /* sm:w-[13rem] md:w-[20rem] lg:w-[28rem] */;
+  }
+
+  &__table {
+    @apply flex m-auto w-full justify-center;
+  }
+
+  &__thead {
+    &-vertical {
+      @apply sticky top-0 p-4 border-b bg-slate-500;
+
+      tr {
+        @apply grid grid-flow-row grid-cols-3 grid-rows-1 p-1 gap-4;
+      }
+    }
+
+    &-horizontal {
+      @apply bg-slate-500;
+
+      tr {
+        @apply grid;
+
+        th {
+          @apply h-auto p-4 border-b;
+        }
+      }
+    }
+  }
+
+  &__tbody {
+    &-horizontal {
+      @apply bg-slate-400;
+
+      tr {
+        @apply grid;
+        td {
+          @apply h-auto p-4 border-b;
+        }
+      }
+    }
+
+    &-vertical {
+      @apply flex flex-col text-center overflow-y-auto no-scrollbar bg-slate-400;
+
+      tr {
+        @apply grid grid-flow-row items-center grid-rows-1 /* p-4 */ border-b gap-4;
+      }
+    }
+  }
+
+  &-vertical {
+    @apply flex flex-col max-h-64;
+  }
+
+  &-horizontal {
+    @apply flex;
+  }
+}

@@ -1,12 +1,9 @@
 import PageLayout from '../../layouts/PageLayout';
 import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
-import { nextPrevPoke } from '../../lib/client/react-query/pokemon/useNextPrevPoke';
 import PokeView from '../../views/Pokemon';
 import Head from 'next/head';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { usePokeSpecie } from '../../lib/client/react-query/pokemon/usePokeSpecie';
-import { usePokemon } from '../../lib/client/react-query/pokemon/usePokemon';
 import { PokemonDetails } from '../../types/models/Pokemon';
 import { PokemonSpecie } from '../../types/models/PokemonSpecie';
 import { GroupGenPokeDX } from '../../lib/client/constants';
@@ -20,7 +17,7 @@ const Pokemon: FC<Props> = ({ title }) => {
   return (
     <PageLayout>
       <Head>
-        <title style={{ textTransform: 'capitalize' }}>{`Pokemón ${title}`}</title>
+        <title style={{ textTransform: 'capitalize' }}>{`Pokémon ${title}`}</title>
       </Head>
       <PokeView></PokeView>
     </PageLayout>
@@ -62,15 +59,13 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const queryClient = new QueryClient();
   const id = params?.id as string;
   let title = '';
 
-  /* await queryClient.prefetchQuery(['pokemonDetails', id], () => usePokemon(id)); */
-
   const getPokemon = async (id: string) => {
-    console.log('Fetching ' + id);
+    console.log('Fetching 2 ' + id);
     const response = await axiosInstance.get<PokemonDetails>(
       `http://pokeapi.co/api/v2/pokemon/${id}`
     );

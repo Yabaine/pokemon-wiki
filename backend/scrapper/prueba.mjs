@@ -60,24 +60,6 @@ export function getPokedexFromGames(game) {
   }
   console.timeEnd('for in');
   return pokedex;
-
-  /*  for (let j = 0; j < game.length; j++) {
-    for (let i in alter) {
-      for (let x in alter[i].versions) {
-        if (alter[i].versions[x].games.includes(game[j])) {
-          idPokedex.push(alter[i].versions[x].pokedexID);
-          break;
-        }
-        console.log(idPokedex);
-      }
-      for (let x in alter[i].pokedex) {
-        if (alter[i].pokedex[x].id == idPokedex[j]) {
-          pokedex.push(alter[i].pokedex[x]);
-          break;
-        }
-      }
-    }
-  } */
 }
 
 //from GENVERPKDX find games from gen then return them

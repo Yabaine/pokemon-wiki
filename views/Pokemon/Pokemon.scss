@@ -2,15 +2,6 @@
   @apply flex flex-col gap-4 bg-red-400;
 
   &__container {
-    @apply flex flex-wrap flex-col container mx-auto p-5;
-  }
-  &__prev-next {
-    @apply flex justify-between;
-  }
-  &__prev-next-item {
-    @apply font-bold text-xl border-2 px-5 py-2;
-  }
-  &__scroll {
-    @apply relative h-64 overflow-auto;
+    @apply flex flex-wrap flex-col mx-auto p-5 /* container */ md:pl-36 md:pr-36 xl:pl-64 xl:pr-64;
   }
 }

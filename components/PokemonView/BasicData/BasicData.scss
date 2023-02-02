@@ -1,8 +1,12 @@
 .basic-data {
-  @apply flex text-slate-800 mb-16;
+  @apply grid pl-4 pr-4 text-slate-800 mb-16 sm:grid-cols-1 md:grid-cols-2;
+
+  &__sprites {
+    @apply order-first md:order-last mb-8;
+  }
 
   &__title {
-    @apply text-3xl;
+    @apply text-3xl pl-4 pr-4 font-semibold text-slate-800 mb-8;
   }
 
   &__name {
@@ -10,7 +14,7 @@
   }
 
   &__data {
-    @apply flex flex-col gap-10 flex-1 pl-5 text-xl font-semibold;
+    @apply flex flex-col gap-10 text-xl font-semibold;
   }
 
   &__info {
@@ -35,20 +39,16 @@
   &__game-indexes {
     @apply uppercase;
   }
-
-  &__table-auto {
-    @apply overflow-y-auto block max-h-64 w-[28rem] no-scrollbar rounded;
-  }
-
+  /* 
   &__thead {
     @apply sticky top-0 p-4 border-b bg-slate-500;
-  }
+  } */
 
-  &__tbody {
+  /*  &__tbody {
     @apply text-center overflow-y-auto max-h-64;
-  }
+  } */
 
-  &__table-items {
+  /*  &__table-items {
     @apply bg-slate-400 border-b h-12;
-  }
+  } */
 }

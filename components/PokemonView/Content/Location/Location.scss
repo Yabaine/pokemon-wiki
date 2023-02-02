@@ -1,0 +1,11 @@
+.location {
+  @apply w-full  overflow-hidden;
+
+  &__container {
+    @apply relative overflow-hidden;
+  }
+
+  &__games-list {
+    @apply flex gap-5 justify-around flex-wrap;
+  }
+}

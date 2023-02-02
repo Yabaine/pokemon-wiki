@@ -2,7 +2,7 @@
   {
     "gen": {
       "name": "generation-i",
-      "alt-name": "GEN I",
+      "altName": "GEN I",
       "url": "https://pokeapi.co/api/v2/generation/1/"
     },
 
@@ -40,7 +40,7 @@
   {
     "gen": {
       "name": "generation-ii",
-      "alt-name": "GEN II",
+      "altName": "GEN II",
       "url": "https://pokeapi.co/api/v2/generation/2/"
     },
     "pokedex": [
@@ -78,7 +78,7 @@
   {
     "gen": {
       "name": "generation-iii",
-      "alt-name": "GEN III",
+      "altName": "GEN III",
       "url": "https://pokeapi.co/api/v2/generation/3/"
     },
     "pokedex": [
@@ -120,7 +120,7 @@
   {
     "gen": {
       "name": "generation-iv",
-      "alt-name": "GEN IV",
+      "altName": "GEN IV",
       "url": "https://pokeapi.co/api/v2/generation/4/"
     },
     "pokedex": [
@@ -176,7 +176,7 @@
   {
     "gen": {
       "name": "generation-v",
-      "alt-name": "GEN V",
+      "altName": "GEN V",
       "url": "https://pokeapi.co/api/v2/generation/5/"
     },
     "pokedex": [
@@ -219,7 +219,7 @@
   {
     "gen": {
       "name": "generation-vi",
-      "alt-name": "GEN VI",
+      "altName": "GEN VI",
       "url": "https://pokeapi.co/api/v2/generation/6/"
     },
     "pokedex": [
@@ -272,7 +272,7 @@
   {
     "gen": {
       "name": "generation-vii",
-      "alt-name": "GEN VII",
+      "altName": "GEN VII",
       "url": "https://pokeapi.co/api/v2/generation/7/"
     },
     "pokedex": [
@@ -369,7 +369,7 @@
   {
     "gen": {
       "name": "generation-viii",
-      "alt-name": "GEN VIII",
+      "altName": "GEN VIII",
       "url": "https://pokeapi.co/api/v2/generation/8/"
     },
     "pokedex": [
