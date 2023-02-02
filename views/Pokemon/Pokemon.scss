@@ -2,6 +2,6 @@
   @apply flex flex-col gap-4 bg-red-400;
 
   &__container {
-    @apply flex flex-wrap flex-col mx-auto p-5 /* container */ md:pl-36 md:pr-36 xl:pl-64 xl:pr-64;
+    @apply flex flex-wrap flex-col mx-auto pb-12 /* container */ md:pl-36 md:pr-36 xl:pl-64 xl:pr-64;
   }
 }

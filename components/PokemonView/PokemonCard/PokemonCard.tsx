@@ -83,9 +83,11 @@ const PokemonCard: FC<Props> = ({ sprites, name }) => {
               ? sprites.front_shiny
               : ''
           }
-          width={120}
-          height={120}
+          /* width={120}
+          height={120} */
+          fill
           alt={name ?? 'pokemon'}
+          quality={75}
         ></Image>
       </div>
     </>

@@ -3,15 +3,12 @@
     @apply flex flex-col container mx-auto p-5;
   }
   &__prev-next {
-    @apply flex justify-between content-center font-semibold text-lg px-4 mb-6 pb-2 capitalize border-b;
+    @apply sticky z-30 bg-white top-0 pt-5 pb-2 flex justify-between content-center font-semibold text-lg px-4 mb-6 capitalize border-b;
     &-end {
-      @apply ml-auto;
+      @apply sticky z-30 bg-white top-0 pt-5 pb-2 flex justify-end content-center font-semibold text-lg px-4 mb-6 capitalize border-b w-full ml-auto;
     }
   }
   &__prev-next-item {
     @apply flex flex-row items-center justify-center gap-2;
   }
-  /* &__line {
-    @apply bg-gray-200 border-0 h-[2px] mb-8;
-  } */
 }

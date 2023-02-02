@@ -17,7 +17,14 @@ const Tabs: FC<Props> = ({ tabs }) => {
   const tab = tabs.map((tab) => {
     const { name, icon } = tab;
     return (
-      <button key={name} onClick={() => setTab(name)} role={'tab'} className={b('tab')}>
+      <button
+        key={name}
+        onClick={() => {
+          console.log(name), setTab(name);
+        }}
+        role={'tab'}
+        className={b('tab')}
+      >
         {icon}
         {name}
       </button>

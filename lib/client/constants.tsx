@@ -1027,3 +1027,10 @@ export const Effectivness = [
     weakness: ['poison', 'steel'],
   },
 ];
+
+export const Routes = [
+  {
+    gen: 'generation-i',
+    games: [{ name: 'red', routes: [{ name: '' }] }],
+  },
+];

@@ -30,7 +30,7 @@
   }
 
   &__table {
-    @apply w-full rounded-lg overflow-hidden;
+    @apply xs:w-full xl:w-[42rem] 2xl:w-[56rem] m-auto rounded-lg overflow-hidden;
 
     tbody {
       tr {

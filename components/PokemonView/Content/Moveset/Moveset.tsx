@@ -50,7 +50,6 @@ const Stats: FC<Props> = ({ currentGen, pokemon }) => {
 
   const MoveType: FC<MoveTypes> = ({ type }) => {
     let moves = moveType(type);
-    console.log(moves);
     if (moves.length == 0) return null;
     return (
       <div className={b('moves-container')}>

@@ -47,7 +47,7 @@ const Stats: FC<Props> = ({ pokemon, specie }) => {
       <thead className={b('thead')}>
         <tr className="flex flex-col gap-2">
           {StatsVariables.map((stat) => {
-            return <th>{stat}</th>;
+            return <th key={stat}>{stat}</th>;
           })}
         </tr>
       </thead>
