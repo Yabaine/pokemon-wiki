@@ -1,20 +1,12 @@
-import Head from 'next/head';
-import PageLayout from '../layouts/PageLayout/PageLayout';
-import React, { FC } from 'react';
-import axiosInstance from '../lib/client/react-query/axios';
 import { GetStaticProps } from 'next';
-import HomeView from '../views/Home/Home';
+import Head from 'next/head';
+import { FC } from 'react';
+import PageLayout from '../layouts/PageLayout/PageLayout';
+import axiosInstance from '../lib/client/react-query/axios';
+import { TypeGroupGenPokeDX } from '../types/models/GroupGenPokeDX';
 import { PokemonType } from '../types/models/Pokemon';
-import { GroupGenPokeDX } from '../lib/client/constants';
-
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  dehydrate,
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query';
+import HomeView from '../views/Home/Home';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 
 const Home: FC = () => {
   return (
@@ -37,7 +29,7 @@ export const getStaticProps: GetStaticProps = async () => {
     return res.data;
   }
   async function getMapData() {
-    const response = await axiosInstance.get<GroupGenPokeDX>(
+    const response = await axiosInstance.get<TypeGroupGenPokeDX>(
       `http://127.0.0.1:8787/genverpkdx`
       /* 'https://pokemon-wiki-api.pokemon-wiki.workers.dev/genverpkdx' */
     );

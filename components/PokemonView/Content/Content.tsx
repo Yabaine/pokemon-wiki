@@ -7,13 +7,15 @@ import Moveset from './Moveset/Moveset';
 import { useCurrentGen, useMainTab } from '../../../lib/client/providers/Zustand';
 import { PokemonSpecie } from '../../../types/models/PokemonSpecie';
 import { PokemonDetails } from '../../../types/models/Pokemon';
+import { TypeGroupGenPokeDX } from '../../../types/models/GroupGenPokeDX';
 
 type Props = {
   specie: PokemonSpecie;
   pokemon: PokemonDetails;
+  mapped: TypeGroupGenPokeDX;
 };
 
-const Content: FC<Props> = ({ pokemon, specie }) => {
+const Content: FC<Props> = ({ pokemon, specie, mapped }) => {
   const b = withBem('content');
 
   const currentGen = useCurrentGen((state) => state.currentGen);
@@ -33,6 +35,7 @@ const Content: FC<Props> = ({ pokemon, specie }) => {
         <Location
           currentGen={currentGen}
           locationUrl={pokemon.location_area_encounters}
+          mapped={mapped}
         />
       );
       break;

@@ -44,7 +44,7 @@ const PokeNav: FC<Props> = ({ data }) => {
     <div className={b(prev_next)}>
       {prevPoke && (
         <Link href={`/pokemon/${prevPage}`} prefetch={false}>
-          <div className={b('prev-next-item')}>
+          <div className={b('prev-item')}>
             <span>{prevPage}</span>
             <span>{POKE_PREV_NAME}</span>
             <Image
@@ -58,8 +58,8 @@ const PokeNav: FC<Props> = ({ data }) => {
         </Link>
       )}
       {nextPoke && (
-        <Link href={`/pokemon/${nextPage}`} prefetch={false}>
-          <div className={b(`prev-next-item`)}>
+        <Link className="ml-auto" href={`/pokemon/${nextPage}`} prefetch={false}>
+          <div className={b('next-item')}>
             {' '}
             <Image
               className={b('sprite')}

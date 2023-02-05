@@ -1,7 +1,7 @@
-import { MdCatchingPokemon, MdMap } from 'react-icons/md';
-import { IoStatsChart, IoEggOutline } from 'react-icons/io5';
 import { GiCrossedSwords } from 'react-icons/gi';
-import { IconBaseProps } from 'react-icons';
+import { IoEggOutline, IoStatsChart } from 'react-icons/io5';
+import { MdCatchingPokemon, MdMap } from 'react-icons/md';
+import { MOVEMENT_TYPE } from '../../types/models/PokemonMovement';
 
 export interface VersionGroup {
   count: number;
@@ -162,28 +162,6 @@ export const Pokedex = {
     },
   ],
 };
-
-export type GroupGenPokeDX = {
-  gen: {
-    name: string;
-    altName: string;
-    url: string;
-  };
-  pokedex: {
-    name: string;
-    id: number;
-    url: string;
-  }[];
-
-  group: {
-    versionName: string;
-    versionID: number;
-    pokedexID: number;
-    games: string[];
-    gamesAcronyms: string[];
-    url: string;
-  };
-}[];
 
 type PokemonTabs = {
   name: string;
@@ -458,7 +436,12 @@ export const Gens = [
   'generation-viii',
 ];
 
-export const TipoMovimiento = ['machine', 'level-up', 'egg', 'tutor'];
+export const TipoMovimientoDisponible: MOVEMENT_TYPE[] = [
+  MOVEMENT_TYPE.MACHINE,
+  MOVEMENT_TYPE.LEVELUP,
+  MOVEMENT_TYPE.EGG,
+  MOVEMENT_TYPE.TUTOR,
+];
 
 export const StatsVariables = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
 
@@ -1025,12 +1008,5 @@ export const Effectivness = [
       fairy: 1,
     },
     weakness: ['poison', 'steel'],
-  },
-];
-
-export const Routes = [
-  {
-    gen: 'generation-i',
-    games: [{ name: 'red', routes: [{ name: '' }] }],
   },
 ];

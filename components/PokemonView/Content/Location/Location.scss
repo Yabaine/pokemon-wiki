@@ -1,8 +1,8 @@
 .location {
-  @apply w-full  overflow-hidden;
+  @apply w-full overflow-hidden;
 
   &__container {
-    @apply relative overflow-hidden;
+    @apply relative overflow-auto;
   }
 
   &__games-list {

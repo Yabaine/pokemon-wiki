@@ -117,9 +117,9 @@ console.log(tob) */
 
 /* await writeFile(`${DB_PATH}/prueba.json`, JSON.stringify(games, null, 2), 'utf-8'); */
 
-/* pokedex.map((pokedexName) => {
-  console.log(pokedexName);
-  let ver = mapped.find((el) => el.pokedex.find((el) => el.name.includes(pokedexName)));
+/* pokedex.map((region) => {
+  console.log(region);
+  let ver = mapped.find((el) => el.pokedex.find((el) => el.name.includes(region)));
   if (ver === undefined) {
   } else {
     ver.versions.map((el) => {

@@ -3,8 +3,9 @@ import { withBem } from '../../../../utils/bem';
 import { PokemonSpecie } from '../../../../types/models/PokemonSpecie';
 import { PokemonDetails } from '../../../../types/models/Pokemon';
 import { getMovesFromPokemonByGen } from '../../../../backend/scrapper/index.mjs';
-import { TipoMovimiento } from '../../../../lib/client/constants';
+import { TipoMovimientoDisponible } from '../../../../lib/client/constants';
 import { Move } from '../../../../types/models/Pokemon';
+import { MOVEMENT_TYPE } from '../../../../types/models/PokemonMovement';
 
 interface Props {
   currentGen: string;
@@ -12,28 +13,20 @@ interface Props {
   specie: PokemonSpecie;
 }
 
-type MoveTypes = {
-  type: 'machine' | 'level-up' | 'egg' | 'tutor';
-};
-
 const Stats: FC<Props> = ({ currentGen, pokemon }) => {
   const b = withBem('moveset');
 
-  const [currentGame, setGame] = useState('');
-
   const { moves, games } = getMovesFromPokemonByGen(currentGen, pokemon);
+
+  const [currentGame, setGame] = useState(games[0]);
 
   const handleClick = (game: string) => {
     setGame(game);
   };
 
   useEffect(() => {
-    if (games.includes(currentGame)) {
-      return;
-    } else {
-      setGame(games[0]);
-    }
-  }, [games, currentGen]);
+    setGame(games[0]);
+  }, [currentGen]);
 
   const moveType = (type: string) => {
     return moves
@@ -48,7 +41,8 @@ const Stats: FC<Props> = ({ currentGen, pokemon }) => {
       .filter((el) => el.version_group_details.length > 0);
   };
 
-  const MoveType: FC<MoveTypes> = ({ type }) => {
+  const MoveType: FC<{ type: MOVEMENT_TYPE }> = (props) => {
+    let type = props.type;
     let moves = moveType(type);
     if (moves.length == 0) return null;
     return (
@@ -88,7 +82,7 @@ const Stats: FC<Props> = ({ currentGen, pokemon }) => {
       </div>
       <div className={b('moveset-container')}>
         {/* Ñ2  */}
-        {TipoMovimiento.map((tipo: any) => {
+        {TipoMovimientoDisponible.map((tipo) => {
           return <MoveType type={tipo}></MoveType>;
         })}
       </div>

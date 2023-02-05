@@ -1,13 +1,13 @@
-import PageLayout from '../../layouts/PageLayout';
-import React, { FC } from 'react';
-import { GetStaticProps } from 'next';
-import PokeView from '../../views/Pokemon';
-import Head from 'next/head';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
+import { FC } from 'react';
+import PageLayout from '../../layouts/PageLayout';
+import axiosInstance from '../../lib/client/react-query/axios';
+import { TypeGroupGenPokeDX } from '../../types/models/GroupGenPokeDX';
 import { PokemonDetails } from '../../types/models/Pokemon';
 import { PokemonSpecie } from '../../types/models/PokemonSpecie';
-import { GroupGenPokeDX } from '../../lib/client/constants';
-import axiosInstance from '../../lib/client/react-query/axios';
+import PokeView from '../../views/Pokemon';
 
 type Props = {
   title: string | string[] | undefined;
@@ -25,28 +25,6 @@ const Pokemon: FC<Props> = ({ title }) => {
 };
 
 export async function getStaticPaths() {
-  /* type Results = {
-    query: {
-      data?: {
-        count?: string;
-        next?: string | null;
-        prev?: string | null;
-        results?: any;
-      };
-    };
-  };
-
-  const getPokemon = async () => {
-    const response = await axiosInstance.get<PokemonType>(
-      `http://pokeapi.co/api/v2/pokemon/?limit=10000`
-    );
-    return response.data;
-  };
-  
-  const query = useQuery<PokemonType, AxiosError>(['allPokemon'], () => getPokemon(), {
-    staleTime: 1000 ** 100,
-  }); */
-
   let arrItems = [];
 
   for (let i = 1; i < 20; i++) {
@@ -81,7 +59,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 
   async function getMapData() {
-    const response = await axiosInstance.get<GroupGenPokeDX>(
+    const response = await axiosInstance.get<TypeGroupGenPokeDX>(
       /* `http://127.0.0.1:8787/genverpkdx` */
       'https://pokemon-wiki-api.pokemon-wiki.workers.dev/genverpkdx'
     );

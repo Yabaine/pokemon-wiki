@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '../axios';
-import { GroupGenPokeDX } from '../../constants';
+import { TypeGroupGenPokeDX } from '../../../../types/models/GroupGenPokeDX';
 
 /* const getMapData = async () => {
   const response = await axiosInstance.get<GroupGenPokeDX>(
@@ -17,7 +17,7 @@ export const mapaData = () => {
 
 export const mapaDataCache = () => {
   const queryClient = useQueryClient();
-  const query = queryClient.getQueryData<GroupGenPokeDX>(['mapaData']);
+  const query = queryClient.getQueryData<TypeGroupGenPokeDX>(['mapaData']);
   return query;
 };
 

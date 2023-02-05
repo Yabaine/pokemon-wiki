@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { withBem } from '../../../utils/bem';
 import { Sprites } from '../../../types/models/Pokemon';
 import Table from '../../Table';
@@ -7,12 +7,14 @@ import { PokemonDetails } from '../../../types/models/Pokemon';
 import { PokemonSpecie } from '../../../types/models/PokemonSpecie';
 import { getGameFromPokedex } from '../../../backend/scrapper/index.mjs';
 import { MainPokedex } from '../../../lib/client/constants';
-import { GroupGenPokeDX } from '../../../lib/client/constants';
+import { TypeGroupGenPokeDX } from '../../../types/models/GroupGenPokeDX';
+
+/* import Region from '../../../backend/scrapper/region.mjs'; */
 
 type Props = {
   data: PokemonDetails;
   specie: PokemonSpecie;
-  mapped: GroupGenPokeDX;
+  mapped: TypeGroupGenPokeDX;
 };
 
 type Handle = (url: string) => void;

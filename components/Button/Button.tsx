@@ -5,14 +5,17 @@ import { TypeGameObject } from '../../lib/client/react-query/pokemon/usePokemonL
 type Props = {
   games: TypeGameObject;
   setMain: React.Dispatch<React.SetStateAction<string>>;
-  gameMain: string;
+  currentGame: string;
+  stopInterval?: () => void;
 };
 
-const Button: FC<Props> = ({ games, setMain, gameMain }) => {
+const Button: FC<Props> = ({ games, setMain, currentGame, stopInterval }) => {
   const b = withBem('button');
 
   const handleClick = (game: string) => {
+    if (currentGame === game) return;
     setMain(game);
+    stopInterval && stopInterval();
   };
 
   let button = Object.entries(games).map(([KEY, value]) => {
@@ -22,7 +25,7 @@ const Button: FC<Props> = ({ games, setMain, gameMain }) => {
         disabled={value.length == 0}
         onClick={() => handleClick(KEY)}
         role={'button'}
-        className={b(`button${gameMain == KEY ? '-main' : ''}`)}
+        className={b(`button${currentGame == KEY ? '-main' : ''}`)}
       >
         {KEY}
       </button>

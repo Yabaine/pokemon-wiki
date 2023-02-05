@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
+import { useRouter } from 'next/router';
+import { FC } from 'react';
+import BasicData from '../../components/PokemonView/BasicData';
+import Content from '../../components/PokemonView/Content';
+import Labels from '../../components/PokemonView/Labels';
+import PokeNav from '../../components/PokemonView/PokeNav';
+import Tabs from '../../components/Tabs';
+import { PokemonTabs } from '../../lib/client/constants';
 import SuspenseWrapper from '../../lib/client/providers/SuspenseWrapper';
-import { withBem } from '../../utils/bem';
+import { mapaDataCache } from '../../lib/client/react-query/pokemon/getMapaData';
 import { usePokemon } from '../../lib/client/react-query/pokemon/usePokemon';
 import { usePokeSpecie } from '../../lib/client/react-query/pokemon/usePokeSpecie';
-import { useRouter } from 'next/router';
-import PokeNav from '../../components/PokemonView/PokeNav';
-import BasicData from '../../components/PokemonView/BasicData';
-import Tabs from '../../components/Tabs';
-import Labels from '../../components/PokemonView/Labels';
-import Content from '../../components/PokemonView/Content';
-import { mapaDataCache } from '../../lib/client/react-query/pokemon/getMapaData';
-import { GroupGenPokeDX } from '../../lib/client/constants';
-import { PokemonTabs } from '../../lib/client/constants';
+import { TypeGroupGenPokeDX } from '../../types/models/GroupGenPokeDX';
+import { withBem } from '../../utils/bem';
 
 const PokeView: FC = () => {
   const b = withBem('poke-view');
@@ -21,20 +21,16 @@ const PokeView: FC = () => {
   const specie = usePokeSpecie(id);
   const mapped = mapaDataCache();
   //Ñ1
-  if (!pokemon || !specie) return null;
+  if (!pokemon || !specie || !mapped) return null;
 
   return (
     <div className={b('container')}>
-      <Labels
-        baseGen={specie.generation.name}
-        pokemon={pokemon}
-        mapped={mapped as GroupGenPokeDX}
-      ></Labels>
+      <Labels baseGen={specie.generation.name} pokemon={pokemon} mapped={mapped}></Labels>
       <PokeNav id={id} data={pokemon} />
-      <BasicData data={pokemon} specie={specie} mapped={mapped as GroupGenPokeDX} />
+      <BasicData data={pokemon} specie={specie} mapped={mapped} />
       <Tabs tabs={PokemonTabs} />
       <SuspenseWrapper loaderType="item">
-        <Content specie={specie} pokemon={pokemon}></Content>
+        <Content specie={specie} pokemon={pokemon} mapped={mapped}></Content>
       </SuspenseWrapper>
     </div>
   );

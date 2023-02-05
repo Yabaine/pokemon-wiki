@@ -3,33 +3,39 @@ import { withBem } from '../../utils/bem';
 
 type Props = {
   draw: (context: CanvasRenderingContext2D) => void;
-  width: number;
-  height: number;
+  currentGame: string;
+  image: {
+    height: number;
+    width: number;
+    src: string;
+    style: string;
+  };
 };
 
-const Canvas: FC<Props> = ({ draw, width, height }) => {
+const Canvas: FC<Props> = ({ draw, currentGame, image }) => {
   const b = withBem('canvas-layout');
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const canvas = canvasRef.current;
 
   useEffect(() => {
-    /*  const interval = setInterval(() => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-      draw(ctx);
-    }, 1000);
-    return () => clearInterval(interval); */
-    const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    draw(ctx);
-  }, []);
+    if (currentGame === '') {
+      ctx.clearRect(0, 0, image.width, image.height);
+    } else {
+      draw(ctx);
+    }
+  }, [currentGame]);
 
   return (
-    <canvas className={b('')} ref={canvasRef} width={width} height={height}></canvas>
+    <canvas
+      className={image.style}
+      ref={canvasRef}
+      width={image.width}
+      height={image.height}
+    ></canvas>
   );
 };
 

@@ -20,7 +20,7 @@ const Tabs: FC<Props> = ({ tabs }) => {
       <button
         key={name}
         onClick={() => {
-          console.log(name), setTab(name);
+          setTab(name);
         }}
         role={'tab'}
         className={b('tab')}
