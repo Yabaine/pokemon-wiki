@@ -30,23 +30,27 @@
   }
 
   &__table {
-    @apply xs:w-full xl:w-[42rem] 2xl:w-[56rem] m-auto rounded-lg overflow-hidden;
+    @apply w-full  lg:w-auto lg:min-w-[28rem] xl:w-[42rem] 2xl:w-[56rem] m-auto rounded-lg overflow-hidden;
 
     tbody {
       tr {
         @apply items-center border-b-2;
 
         th {
-          @apply p-3 text-left  bg-slate-500 capitalize;
+          @apply p-2 text-left  bg-slate-500 capitalize;
         }
 
         td {
           @apply p-2 bg-slate-400;
 
-          div {
+          span {
+            @apply flex flex-wrap gap-2 uppercase  font-bold text-white text-xs rounded-sm  /* outline-1 outline */ py-3;
+          }
+
+          ul {
             @apply flex flex-wrap gap-2;
-            span {
-              @apply uppercase font-bold text-white text-xs rounded-sm  outline-1 outline pr-3 pl-3 pt-1 pb-1;
+            li {
+              @apply uppercase  font-bold text-white text-xs rounded-sm  outline-1 outline px-3 py-1;
             }
           }
         }
@@ -55,9 +59,5 @@
         @apply border-b-0;
       }
     }
-  }
-
-  &__item-list {
-    @apply flex flex-col;
   }
 }

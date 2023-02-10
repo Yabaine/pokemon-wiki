@@ -27,6 +27,7 @@ const Location: FC<Props> = ({ currentGen, locationUrl, mapped }) => {
   };
 
   const { pokemonLocations, games } = usePokemonLocation(locationUrl, currentGen);
+  console.log(pokemonLocations);
   class MapLocation {
     location: string[];
     coordinates: any;

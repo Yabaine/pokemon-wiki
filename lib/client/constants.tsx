@@ -3,6 +3,15 @@ import { IoEggOutline, IoStatsChart } from 'react-icons/io5';
 import { MdCatchingPokemon, MdMap } from 'react-icons/md';
 import { MOVEMENT_TYPE } from '../../types/models/PokemonMovement';
 
+export const themes = [
+  'theme-light',
+  'theme-dark',
+  'theme-blue',
+  'theme-red',
+  'theme-green',
+  'theme-black',
+];
+
 export interface VersionGroup {
   count: number;
   next: string;

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { withBem } from '../../../utils/bem';
-import General from './General/General2';
+import General from './General/General';
 import Stats from './Stats';
 import Location from './Location/Location';
 import Moveset from './Moveset/Moveset';

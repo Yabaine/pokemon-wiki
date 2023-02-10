@@ -10,5 +10,8 @@ module.exports = {
   serverRuntimeConfig: {
     PROJECT_ROOT: __dirname,
   },
+  env: {
+    NEXT_PUBLIC_DEFAULT_THEME: 'theme-light',
+  },
   /* reactStrictMode: true, */
 };
