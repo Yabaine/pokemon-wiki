@@ -1,5 +1,11 @@
 .general {
-  @apply flex flex-col gap-4;
+  @apply flex flex-col gap-12;
+
+  div {
+    h2 {
+      @apply mb-16;
+    }
+  }
 
   &__evolution-line {
     @apply flex w-full flex-col;
@@ -29,22 +35,26 @@
     @apply md:hidden;
   }
 
+  &__no-items {
+    @apply flex justify-center m-auto;
+  }
+
   &__table {
-    @apply w-full  lg:w-auto lg:min-w-[28rem] xl:w-[42rem] 2xl:w-[56rem] m-auto rounded-lg overflow-hidden;
+    @apply w-full lg:w-auto lg:min-w-[28rem] xl:w-[42rem] 2xl:w-[56rem] m-auto outline-1 outline rounded-lg /* bg-[#e8d7d2] */ bg-[#CBD0E1];
 
     tbody {
       tr {
-        @apply items-center border-b-2;
+        @apply items-center border-b border-slate-800;
 
         th {
-          @apply p-2 text-left  bg-slate-500 capitalize;
+          @apply p-2 text-left border-r border-slate-800  capitalize;
         }
 
         td {
-          @apply p-2 bg-slate-400;
+          @apply p-2;
 
           span {
-            @apply flex flex-wrap gap-2 uppercase  font-bold text-white text-xs rounded-sm  /* outline-1 outline */ py-3;
+            @apply flex flex-wrap gap-2 uppercase  font-bold text-white text-xs rounded-sm py-3;
           }
 
           ul {

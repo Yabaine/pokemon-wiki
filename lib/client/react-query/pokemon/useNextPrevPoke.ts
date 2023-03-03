@@ -31,6 +31,7 @@ export const nextPrevPoke = (id: number) => {
       return {
         queryKey: ['pokemonDetails', poke],
         queryFn: () => getPokemon(poke),
+        enabled: poke === '<no source>' ? false : true,
       };
     }),
   });

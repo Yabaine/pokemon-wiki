@@ -107,13 +107,13 @@ export function getPokedexFromGame(game) {
   return games;
 } */
 
-/* console.log(getPokedexFromGame(['red', 'crystal', 'emerald', 'firered', 'leafgreen']));
+/* console.log(getPokedexFromGame(['red', 'crystal', 'emerald', 'fire-red', 'leaf-green']));
 console.log('*********************************'); */
 /* const tob = getGamesFromGen('generation-ii');
 console.log(tob) */
 
 /* console.log(getGamesFromGeneration('generation-i')); */
-/* console.log(getPokedexFromGames(['red', 'crystal', 'emerald', 'firered', 'leafgreen'])); */
+/* console.log(getPokedexFromGames(['red', 'crystal', 'emerald', 'fire-red', 'leaf-green'])); */
 
 /* await writeFile(`${DB_PATH}/prueba.json`, JSON.stringify(games, null, 2), 'utf-8'); */
 

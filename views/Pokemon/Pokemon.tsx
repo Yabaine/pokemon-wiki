@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { FC } from 'react';
+import Navbar from '../../components/Navbar';
 import BasicData from '../../components/PokemonView/BasicData';
 import Content from '../../components/PokemonView/Content';
 import Labels from '../../components/PokemonView/Labels';
@@ -20,18 +21,21 @@ const PokeView: FC = () => {
   const pokemon = usePokemon(id);
   const specie = usePokeSpecie(id);
   const mapped = mapaDataCache();
-  //Ñ1
+
   if (!pokemon || !specie || !mapped) return null;
 
   return (
-    <div className={b('container')}>
-      <Labels baseGen={specie.generation.name} pokemon={pokemon} mapped={mapped}></Labels>
-      <PokeNav id={id} data={pokemon} />
-      <BasicData data={pokemon} specie={specie} mapped={mapped} />
-      <Tabs tabs={PokemonTabs} />
-      <SuspenseWrapper loaderType="item">
-        <Content specie={specie} pokemon={pokemon} mapped={mapped}></Content>
-      </SuspenseWrapper>
+    <div className={b('')}>
+      <Navbar baseGen={specie.generation.name} pokemon={pokemon} mapped={mapped} />
+      <div className={b('container')}>
+        {/* <Labels baseGen={specie.generation.name} pokemon={pokemon} mapped={mapped}></Labels> */}
+        <PokeNav id={id} data={pokemon} />
+        <BasicData data={pokemon} specie={specie} mapped={mapped} />
+        <Tabs tabs={PokemonTabs} />
+        <SuspenseWrapper loaderType="item">
+          <Content specie={specie} pokemon={pokemon} mapped={mapped}></Content>
+        </SuspenseWrapper>
+      </div>
     </div>
   );
 };

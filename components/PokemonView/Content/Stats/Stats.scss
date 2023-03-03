@@ -2,7 +2,7 @@
   @apply flex flex-col gap-4;
 
   &__table {
-    @apply flex flex-row w-full gap-10 m-auto justify-center max-w-md md:max-w-2xl;
+    @apply flex flex-row w-full gap-10 m-auto justify-center max-w-md md:max-w-2xl overflow-hidden;
   }
 
   &__other-stats {
@@ -10,7 +10,7 @@
   }
 
   &__tbody {
-    @apply flex flex-col gap-2 w-96;
+    @apply flex flex-col gap-2 w-3/5;
   }
 
   &__bar {

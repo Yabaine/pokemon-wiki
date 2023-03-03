@@ -13,7 +13,22 @@ module.exports = {
       xs: '475px',
       ...defaultTheme.screens,
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        lato: ['Lato', 'sans-serif'],
+        mono: [
+          'Montserrat',
+          'Source Sans Pro',
+          'Lato',
+          'Noto Sans',
+          ...defaultTheme.fontFamily.mono,
+        ],
+      },
+    },
   },
-  plugins: [require('@tailwindcss/forms'), require('./themes/index')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('./themes/index'),
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
 };

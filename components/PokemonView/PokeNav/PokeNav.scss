@@ -3,9 +3,9 @@
     @apply flex flex-col container mx-auto p-5;
   }
   &__prev-next {
-    @apply sticky z-30 bg-white top-0 pt-5 pb-2 px-4 mb-6 flex flex-wrap justify-between content-center font-semibold text-lg  capitalize border-b;
+    @apply sticky z-30 bg-slate-100 top-0 pt-5 pb-2 px-4 mb-6 flex flex-wrap justify-between content-center font-semibold text-lg  capitalize border-b;
     &-end {
-      @apply sticky z-30  bg-white top-0 pt-5 pb-2 px-4 mb-6  flex flex-wrap justify-end content-center font-semibold text-lg capitalize border-b w-full ml-auto;
+      @apply sticky z-30  bg-slate-100 top-0 pt-5 pb-2 px-4 mb-6  flex flex-wrap justify-end content-center font-semibold text-lg capitalize border-b w-full ml-auto;
     }
   }
   &__prev-item {

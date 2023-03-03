@@ -11,13 +11,16 @@ import { toString } from '../../../../lib/client/imageLoaders';
 import { useEvolutions } from '../../../../lib/client/react-query/pokemon/ddd';
 import { EvolObjectPokemon } from '../../../../lib/client/react-query/pokemon/useEvolutions';
 import { useSeveralPokemon } from '../../../../lib/client/react-query/pokemon/useSeveralPokemon';
+import { GAMES_COLOR } from '../../../../model/games/constants/GamesColors';
+import { GAMES } from '../../../../model/games/enums/Games';
 import { TYPES_COLOR } from '../../../../model/pokemon/constants/TypesColor';
 import { TYPES_DAMAGES } from '../../../../model/pokemon/constants/TypesDamages';
 import { POKEMON_TYPE } from '../../../../model/pokemon/enums/PokemonType';
-import { PokemonDetails } from '../../../../types/models/Pokemon';
-import { PokemonSpecie } from '../../../../types/models/PokemonSpecie';
+import { HeldItem, PokemonDetails } from '../../../../types/models/Pokemon';
+import { FlavorTextEntry, PokemonSpecie } from '../../../../types/models/PokemonSpecie';
 import { withBem } from '../../../../utils/bem';
 import { filterSearchTerm } from '../../../../utils/index';
+import Table from '../../../Table/Table';
 
 interface Props {
   currentGen: string;
@@ -30,7 +33,7 @@ type item = {
   url: string;
 };
 
-type desc = {
+/* type desc = {
   flavor_text: string;
   language: {
     name: string;
@@ -40,7 +43,7 @@ type desc = {
     name: string;
     url: string;
   };
-}[];
+}[]; */
 
 interface Evol {
   key: string;
@@ -104,9 +107,7 @@ const General: FC<Props> = ({ currentGen, pokemon, specie }) => {
 
     evolutionLine = (
       <div className={b('evolution-line')}>
-        <h3>
-          <strong>Evolution Line</strong>
-        </h3>
+        <h2>Evolution Line</h2>
         <div className={b('poke-line')}>{pokeline}</div>
       </div>
     );
@@ -267,9 +268,7 @@ const General: FC<Props> = ({ currentGen, pokemon, specie }) => {
     }
 
     getCurrentPokemonTypes() {
-      pokemon.types.forEach((item) =>
-        this.currentPokemonType.push(item.type.name as PokemonTypes)
-      );
+      pokemon.types.forEach((item) => this.currentPokemonType.push(item.type.name));
     }
 
     calculateEffectivness() {
@@ -326,19 +325,17 @@ const General: FC<Props> = ({ currentGen, pokemon, specie }) => {
     getTable() {
       return (
         <div>
-          <h3>Effectivness</h3>
-          <table className={b('table')}>
-            <tbody>
-              {Object.entries(this.grades).map(([key, value]) => {
-                return (
-                  <tr key={key}>
-                    <th>{key}</th>
-                    {this.getValues(value)}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <h2>Effectivness</h2>
+          <Table>
+            {Object.entries(this.grades).map(([key, value]) => {
+              return (
+                <tr key={key}>
+                  <th>{key}</th>
+                  {this.getValues(value)}
+                </tr>
+              );
+            })}
+          </Table>
         </div>
       );
     }
@@ -483,68 +480,75 @@ const General: FC<Props> = ({ currentGen, pokemon, specie }) => {
 
   /*   const effectivnessTable = EffectivnesTypes(); */
 
-  const itemHeld = filterItemsByGen(currentGen, pokemon.held_items);
+  const itemHeld: HeldItem[] = filterItemsByGen(currentGen, pokemon.held_items);
 
   items = (
     <div className={b('items')}>
-      <h3>Items</h3>
+      <h2>Items</h2>
       {itemHeld.length > 0 ? (
         <>
-          <table className={b('table')}>
-            <tbody>
-              <tr>
-                <th>Item</th>
-                <th>Rate</th>
-                <th>Game</th>
-              </tr>
-              {itemHeld.map((details: any, index: number) => {
-                return (
-                  <tr key={details.item.name}>
-                    <td /* rowSpan={details.version_details.length} */>
-                      {details.item.name.replace('-', ' ')}
-                    </td>
-                    <td>
-                      {details.version_details.map((item: any) => {
-                        return <span>{`${item.rarity}% `}</span>;
-                      })}
-                    </td>
-                    <td>
-                      {details.version_details.map((item: any) => {
-                        return <span>{item.version.name}</span>;
-                      })}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <Table>
+            <tr>
+              <th>Item</th>
+              <th>Rate</th>
+              <th>Game</th>
+            </tr>
+            {itemHeld.map((details) => {
+              return (
+                <tr key={details.item.name}>
+                  <td>{details.item.name.replace('-', ' ')}</td>
+                  <td className="item">
+                    {details.version_details.map((item, id) => {
+                      return <span key={id}>{`${item.rarity}% `}</span>;
+                    })}
+                  </td>
+                  <td className="item">
+                    {details.version_details.map((item, id) => {
+                      return <span key={id}>{item.version.name.replace('-', ' ')}</span>;
+                    })}
+                  </td>
+                </tr>
+              );
+            })}
+          </Table>
         </>
       ) : (
-        <div>
-          <span>{`${pokemon.name} has no items in ${currentGen}`}</span>
-        </div>
+        <p className={b('no-items')}>{`${pokemon.name} has no items in ${currentGen}`}</p>
       )}
     </div>
   );
 
-  const desc: desc = getDescFromGames(currentGen, specie.flavor_text_entries);
+  const desc: FlavorTextEntry[] = getDescFromGames(
+    currentGen,
+    specie.flavor_text_entries
+  );
 
   description = (
     <div className={b('description')}>
-      <div>Description</div>
+      <h2>Description</h2>
       {desc.length > 0 ? (
-        <table className={b('table')}>
-          <tbody>
-            {desc.map((el, id) => (
-              <tr key={id}>
-                <th>{el.version.name}</th>
-                <td>{el.flavor_text}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Table>
+          {desc.map((el, id) => (
+            <tr key={id}>
+              <th
+                style={{
+                  backgroundColor: `${GAMES_COLOR[el.version.name].base}`,
+                }}
+              >
+                {el.version.name.replace('-', ' ')}
+              </th>
+              <td
+                style={{
+                  backgroundColor: `${GAMES_COLOR[el.version.name].light}`,
+                }}
+              >
+                {el.flavor_text}
+              </td>
+            </tr>
+          ))}
+        </Table>
       ) : (
-        <div>Description not available </div>
+        <p>Description not available </p>
       )}
     </div>
   );

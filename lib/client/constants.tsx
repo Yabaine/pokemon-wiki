@@ -1,7 +1,8 @@
 import { GiCrossedSwords } from 'react-icons/gi';
 import { IoEggOutline, IoStatsChart } from 'react-icons/io5';
 import { MdCatchingPokemon, MdMap } from 'react-icons/md';
-import { MOVEMENT_TYPE } from '../../types/models/PokemonMovement';
+import { GENERATIONS } from '../../model/generations/enums/Generations';
+import { MOVEMENT_METHOD } from '../../model/pokemon/enums/PokemonMovement';
 
 export const themes = [
   'theme-light',
@@ -248,7 +249,7 @@ export const PokemonTabs = [
         url: 'https://pokeapi.co/api/v2/version-group/6/',
       },
       'firered-leafgreen': {
-        name: { firered: 'firered', leafgreen: 'leafgreen' },
+        name: { fire-red: 'fire-red', leaf-green: 'leaf-green' },
         url: 'https://pokeapi.co/api/v2/version-group/7/',
       },
     },
@@ -284,7 +285,7 @@ export const PokemonTabs = [
         url: 'https://pokeapi.co/api/v2/version-group/9/',
       },
       'heartgold-soulsilver': {
-        name: { heartgold: 'heartgold', soulsilver: 'soulsilver' },
+        name: { heart-gold: 'heart-gold', soul-silver: 'soul-silver' },
         url: 'https://pokeapi.co/api/v2/version-group/10/',
       },
     },
@@ -434,32 +435,25 @@ export const MainPokedex = [
   'hisui',
 ];
 
-export const Gens = [
-  'generation-i',
-  'generation-ii',
-  'generation-iii',
-  'generation-iv',
-  'generation-v',
-  'generation-vi',
-  'generation-vii',
-  'generation-viii',
+export const Gens: GENERATIONS[] = [
+  GENERATIONS['GENERATION-I'],
+  GENERATIONS['GENERATION-II'],
+  GENERATIONS['GENERATION-III'],
+  GENERATIONS['GENERATION-IV'],
+  GENERATIONS['GENERATION-V'],
+  GENERATIONS['GENERATION-VI'],
+  GENERATIONS['GENERATION-VII'],
+  GENERATIONS['GENERATION-VIII'],
 ];
 
-export const TipoMovimientoDisponible: MOVEMENT_TYPE[] = [
-  MOVEMENT_TYPE.MACHINE,
-  MOVEMENT_TYPE.LEVELUP,
-  MOVEMENT_TYPE.EGG,
-  MOVEMENT_TYPE.TUTOR,
+export const MOVE_METHODS_ADQUIST: MOVEMENT_METHOD[] = [
+  MOVEMENT_METHOD.MACHINE,
+  MOVEMENT_METHOD.LEVELUP,
+  MOVEMENT_METHOD.EGG,
+  MOVEMENT_METHOD.TUTOR,
 ];
 
 export const StatsVariables = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'];
-
-/* export const TipoMovimiento = [
-  { tipo: 'machine' },
-  { tipo: 'level-up' },
-  { tipo: 'egg' },
-  { tipo: 'tutor' },
-]; */
 
 //create an array of objects with the effectiveness of each type
 

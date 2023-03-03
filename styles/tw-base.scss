@@ -1,11 +1,43 @@
 @layer base {
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/lato-regular.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/notosans-regular.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/sourcesanspro-regular.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/montserrat-regular.woff') format('woff');
+  }
+
   // tags
   html {
     @apply text-sm xs:text-base;
   }
 
   body {
-    @apply dark:bg-black dark:text-white;
+    @apply dark:bg-black dark:text-white bg-slate-100 no-scrollbar;
   }
 
   h1 {
@@ -14,6 +46,10 @@
 
   h2 {
     @apply text-lg xs:text-xl font-bold;
+  }
+
+  p {
+    @apply text-base xs:text-lg;
   }
 
   [type='text'],

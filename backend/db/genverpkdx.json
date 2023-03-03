@@ -1286,7 +1286,7 @@
         "versionID": 7,
         "pokedexID": 2,
         "region": "kanto",
-        "games": ["firered", "leafgreen"],
+        "games": ["fire-red", "leaf-green"],
         "gamesAcronyms": ["FR", "LG"],
         "url": "https://pokeapi.co/api/v2/version-group/7/"
       }
@@ -1460,7 +1460,7 @@
         "versionID": 10,
         "pokedexID": 7,
         "region": "johto",
-        "games": ["heartgold", "soulsilver"],
+        "games": ["heart-gold", "soul-silver"],
         "gamesAcronyms": ["HG", "SS"],
         "url": "https://pokeapi.co/api/v2/version-group/10/"
       }

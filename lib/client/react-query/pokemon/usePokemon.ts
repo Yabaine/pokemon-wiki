@@ -12,7 +12,13 @@ const getPokemon = async (id: string) => {
 };
 
 export const usePokemon = (id: string) => {
-  const query = useQuery<PokemonDetails>(['pokemonDetails', id], () => getPokemon(id));
+  const query = useQuery<PokemonDetails, AxiosError>(
+    ['pokemonDetails', id],
+    () => getPokemon(id),
+    {
+      enabled: id === '<no source>' ? false : true,
+    }
+  );
 
   return query.data;
 };

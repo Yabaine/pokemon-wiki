@@ -1,11 +1,15 @@
 .location {
-  @apply w-full overflow-hidden;
+  @apply flex flex-col gap-10 w-full overflow-hidden;
+
+  /*  h2 {
+    @apply mb-16;
+  } */
 
   &__container {
     @apply relative overflow-auto;
   }
 
   &__games-list {
-    @apply flex gap-5 justify-around flex-wrap;
+    @apply flex justify-center lg:justify-start gap-4 flex-wrap;
   }
 }

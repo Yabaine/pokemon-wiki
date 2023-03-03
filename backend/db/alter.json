@@ -90,7 +90,7 @@
         "versionName": "firered-leafgreen",
         "versionID": 7,
         "pokedexID": 4,
-        "games": ["firered", "leafgreen"],
+        "games": ["fire-red", "leaf-green"],
         "url": "https://pokeapi.co/api/v2/version-group/7/"
       }
     }

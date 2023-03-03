@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, Suspense } from 'react';
-
+import Loader from '../../../components/Loader';
 import { FallbackType } from '../../../types';
 
 type Props = {
@@ -8,8 +8,8 @@ type Props = {
 };
 
 const SuspenseWrapper: FC<Props> = ({ children, loaderType }) => {
-  // return <Suspense fallback={<Loading loaderType={loaderType} />}>{children}</Suspense>;
-  return <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>;
+  return <Suspense fallback={<Loader />}>{children}</Suspense>;
+  /* return <Suspense fallback={<span>Loading</span>}>{children}</Suspense>; */
 };
 
 export default SuspenseWrapper;

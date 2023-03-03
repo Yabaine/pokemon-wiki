@@ -1,54 +1,41 @@
 .basic-data {
-  @apply grid pl-4 pr-4 text-slate-800 mb-16 sm:grid-cols-1 md:grid-cols-2;
-
-  &__sprites {
-    @apply order-first md:order-last mb-8;
-  }
+  @apply grid px-4 mb-16 sm:grid-cols-1 gap-8 /* md:grid-cols-2 */;
 
   &__title {
-    @apply text-3xl pl-4 pr-4 font-semibold text-slate-800 mb-8;
+    @apply text-3xl px-4  mb-8 font-semibold;
+    span {
+      @apply text-yellow-500 capitalize pl-2 font-semibold;
+    }
   }
 
-  &__name {
-    @apply text-yellow-500 capitalize pl-2 font-semibold;
+  &__attribute {
+    @apply text-xl text-th-neutral-600 pl-2;
   }
 
   &__data {
-    @apply flex flex-col gap-10 text-xl font-semibold;
+    @apply flex flex-col md:flex-row gap-8 justify-between overflow-hidden  text-xl;
   }
 
   &__info {
-    @apply flex flex-col gap-5;
+    @apply flex flex-col justify-center gap-5;
   }
 
   &__entry {
-    @apply flex flex-wrap align-middle text-left items-end;
+    @apply font-mono flex flex-wrap gap-2 align-baseline text-left items-end;
   }
 
   &__detail {
-    @apply uppercase font-normal text-base pl-3;
+    @apply font-normal text-base;
   }
 
   &__details {
-    @apply capitalize font-normal text-base pl-3;
+    @apply capitalize font-normal text-base;
   }
 
   &__type {
-    @apply capitalize font-normal text-base pl-3;
+    @apply uppercase text-sm px-2 rounded-sm text-white self-center;
   }
   &__game-indexes {
     @apply uppercase;
   }
-  /* 
-  &__thead {
-    @apply sticky top-0 p-4 border-b bg-slate-500;
-  } */
-
-  /*  &__tbody {
-    @apply text-center overflow-y-auto max-h-64;
-  } */
-
-  /*  &__table-items {
-    @apply bg-slate-400 border-b h-12;
-  } */
 }

@@ -1,15 +1,23 @@
 .labels {
-  @apply fixed flex flex-col gap-3 md:-ml-16 lg:-ml-32 text-xs top-[10%] z-30;
+  @apply flex flex-col /* m-auto */ /* gap-3 */ text-base;
 
   &__gen {
-    @apply text-left;
+    @apply border-solid py-2 border-b;
   }
 
-  &__icon {
+  &__gen:hover {
+    @apply border-solid py-2 border-b shadow-inner bg-blue-200 bg-opacity-20;
+  }
+
+  &__gen-main {
+    @apply border-solid py-2 border-b shadow-md bg-purple-200 ease-in-out;
+  }
+
+  /* &__icon {
     @apply text-left -rotate-90 text-2xl;
   }
 
   &__icon-main {
     @apply text-left -rotate-90 text-2xl bg-purple-500;
-  }
+  } */
 }

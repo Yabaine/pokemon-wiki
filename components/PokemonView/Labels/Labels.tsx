@@ -1,30 +1,29 @@
-import React, { FC, useEffect } from 'react';
-import { withBem } from '../../../utils/bem';
-import { TypeGroupGenPokeDX } from '../../../types/models/GroupGenPokeDX';
-import { BiBookmarkAlt } from 'react-icons/bi';
-import { useCurrentGen } from '../../../lib/client/providers/Zustand';
+import { FC, useEffect } from 'react';
 import { Gens } from '../../../lib/client/constants';
-import { PokemonDetails } from '../../../types/models/Pokemon';
-import Bookmark from '../../../public/images/bookmark.svg';
+import { useCurrentGen } from '../../../lib/client/providers/Zustand';
+import { GENERATIONS } from '../../../model/generations/enums/Generations';
+import { TypeGroupGenPokeDX } from '../../../types/models/GroupGenPokeDX';
+import { withBem } from '../../../utils/bem';
 
 type Props = {
-  pokemon: PokemonDetails;
-  baseGen: string;
+  baseGen: GENERATIONS;
   mapped: TypeGroupGenPokeDX;
+  sideMenu: () => void;
 };
 
-const Labels: FC<Props> = ({ baseGen, pokemon, mapped }) => {
+const Labels: FC<Props> = ({ baseGen, mapped, sideMenu }) => {
   const b = withBem('labels');
 
   const { currentGen, setCurrentGen } = useCurrentGen();
 
   const laterGen = Gens.slice(Gens.indexOf(baseGen));
 
-  const gensAltName = laterGen.map((_, i) => {
-    return mapped.find((el) => el.gen.name === laterGen[i])?.gen;
+  const gensAppearances = laterGen.map((_, i) => {
+    return mapped.find((el) => el.gen.name === laterGen[i]);
   });
 
-  const handleClick = (gen: string) => {
+  const handleClick = (gen: GENERATIONS) => {
+    sideMenu();
     setCurrentGen(gen);
   };
 
@@ -38,16 +37,16 @@ const Labels: FC<Props> = ({ baseGen, pokemon, mapped }) => {
 
   return (
     <div className={b('')}>
-      {gensAltName.map((gen) => {
+      {gensAppearances.map((gen) => {
         return (
           <button
-            onClick={() => handleClick(gen?.name as string)}
-            key={gen?.name}
-            className={b('gen')}
+            onClick={() => handleClick(gen?.gen?.name as GENERATIONS)}
+            key={gen?.gen?.name}
+            className={b(`gen${currentGen == gen?.gen?.name ? '-main' : ''}`)}
           >
-            <BiBookmarkAlt className={b(`icon${currentGen == gen?.name ? '-main' : ''}`)}>
-              dsda
-            </BiBookmarkAlt>
+            {/* <BiBookmarkAlt
+              className={b(`icon${currentGen == gen?.name ? '-main' : ''}`)}
+            ></BiBookmarkAlt> */}
             {/* <svg
               version="1.0"
               xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +71,7 @@ c-13 10 -40 31 -60 47 l-36 29 -60 -47 -60 -47 0 301 c0 189 -4 309 -10 321
                 />
               </g>
             </svg> */}
-            <span>{gen?.altName}</span>
+            <span>{gen?.gen?.altName}</span>
           </button>
         );
       })}

@@ -1,3 +1,5 @@
+import { POKEMON_TYPE } from '../../model/pokemon/enums/PokemonType';
+
 export type PokeNameUrl = {
   name: string;
   url: string;
@@ -42,6 +44,11 @@ export interface Ability {
   ability: Species;
   is_hidden: boolean;
   slot: number;
+}
+
+export interface Types {
+  name: POKEMON_TYPE;
+  url: string;
 }
 
 export interface Species {
@@ -199,5 +206,5 @@ export interface Stat {
 
 export interface Type {
   slot: number;
-  type: Species;
+  type: Types;
 }

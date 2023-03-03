@@ -107,15 +107,14 @@ El queryClient es el mismo que se inicializa en _app
 
 Consultas 
 Ñ1
-Validación undefined typescript, alguna forma de omitir?
+Implementacio de !
 Ñ2
-Me da problemas si pongo tipo string ????
+Item loading return undefined
 Ñ3
 Nested Objects
 Ñ4
-Mejora ColorPicker?
-Ñ5
-Mejorar componente General
+Component Table 2
+
 
 
 

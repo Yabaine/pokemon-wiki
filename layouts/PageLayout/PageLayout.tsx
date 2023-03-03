@@ -12,9 +12,9 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
     <ErrorBoundaryWrapper errorFallbackType="screen">
       <SuspenseWrapper loaderType="screen">
         <div className={b()}>
-          <aside>
+          {/* <aside>
             <Navbar />
-          </aside>
+          </aside> */}
 
           <main className={b('main')}>
             <ErrorBoundaryWrapper errorFallbackType="page">

@@ -1,6 +1,6 @@
 .poke-card {
   &__card {
-    @apply relative flex flex-col  /* md:w-3/5 */ md:m-0  xl:w-96 m-auto items-center bg-slate-50 border border-gray-200 rounded-lg h-80  md:flex-row md:max-w-lg   dark:border-gray-700 dark:bg-gray-800;
+    @apply relative aspect-square w-[256px] h-[256px]  m-auto items-center object-contain border rounded-lg order-first md:order-last;
   }
 
   &__tabs {
@@ -11,6 +11,6 @@
   }
 
   &__sprite {
-    @apply /* overflow-hidden */ object-cover w-fit mx-auto p-2 max-w-xs xs:h-10  /* rounded-t-lg */   /* h-96  *//* md:h-auto md:w-48 md:rounded-none md:rounded-l-lg */;
+    @apply relative object-contain;
   }
 }

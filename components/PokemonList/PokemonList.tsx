@@ -3,6 +3,7 @@ import { withBem } from '../../utils/bem';
 import { motion } from 'framer-motion';
 import { useAllPokemon } from '../../lib/client/react-query/pokemon/useAllPokemon';
 import PokemonItem from '../PokemonItem';
+import Button from '../Button/Button';
 
 //Todo genType en .map
 
@@ -45,25 +46,15 @@ const PokemonList: FC = () => {
     { name: 'Gen VI', id: 6, offSet: { ini: 649, fin: 721 } },
     { name: 'Gen VII', id: 7, offSet: { ini: 721, fin: 809 } },
     { name: 'Gen VIII', id: 8, offSet: { ini: 809, fin: 905 } },
-    /* 'Gen II',
-    'Gen III',
-    'Gen IV',
-    'Gen V',
-    'Gen VI',
-    'Gen VII',
-    'Gen VIII', */
   ];
 
   //Tabs
   const genMap = gens.map(
     (gen): JSX.Element => (
       <li key={gen.name} className="mr-2">
-        <button
-          onClick={() => setTab({ ini: gen.offSet.ini, fin: gen.offSet.fin })}
-          className={b('not-active')}
-        >
+        <Button onClick={() => setTab({ ini: gen.offSet.ini, fin: gen.offSet.fin })}>
           {gen.name}
-        </button>
+        </Button>
       </li>
     )
   );

@@ -113,6 +113,7 @@ export function getMovesFromPokemonByGen(gen, pokemon) {
       };
     })
     .filter((el) => el.version_group_details.length > 0);
+
   return { moves: [...new Set(moves)], games: versionGames };
 }
 

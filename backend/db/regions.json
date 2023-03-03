@@ -165,13 +165,13 @@
       {
         "name": "firered-leafgreen",
         "url": "https://pokeapi.co/api/v2/version-group/7/",
-        "games": ["firered", "leafgreen"],
+        "games": ["fire-red", "leaf-green"],
         "gamesAcronyms": ["FR", "LG"]
       },
       {
         "name": "heartgold-soulsilver",
         "url": "https://pokeapi.co/api/v2/version-group/10/",
-        "games": ["heartgold", "soulsilver"],
+        "games": ["heart-gold", "soul-silver"],
         "gamesAcronyms": ["HG", "SS"]
       },
       {
@@ -303,7 +303,7 @@
       {
         "name": "heartgold-soulsilver",
         "url": "https://pokeapi.co/api/v2/version-group/10/",
-        "games": ["heartgold", "soulsilver"],
+        "games": ["heart-gold", "soul-silver"],
         "gamesAcronyms": ["HG", "SS"]
       }
     ]

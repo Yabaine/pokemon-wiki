@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { GENERATIONS } from '../../../model/generations/enums/Generations';
 
 interface TabState {
   tab: string;
@@ -6,8 +7,8 @@ interface TabState {
 }
 
 interface GenState {
-  currentGen: string;
-  setCurrentGen: (by: string) => void;
+  currentGen: GENERATIONS;
+  setCurrentGen: (gen: GENERATIONS) => void;
 }
 
 export const useMainTab = create<TabState>()((set) => ({
@@ -16,6 +17,6 @@ export const useMainTab = create<TabState>()((set) => ({
 }));
 
 export const useCurrentGen = create<GenState>()((set) => ({
-  currentGen: 'generation-viii',
-  setCurrentGen: (by) => set(() => ({ currentGen: by })),
+  currentGen: GENERATIONS['GENERATION-VIII'],
+  setCurrentGen: (gen) => set(() => ({ currentGen: gen })),
 }));

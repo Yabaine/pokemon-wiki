@@ -1,6 +1,8 @@
+import { GENERATIONS } from '../../model/generations/enums/Generations';
+
 export type TypeGroupGenPokeDX = {
   gen: {
-    name: string;
+    name: GENERATIONS;
     altName: string;
     region: string;
     url: string;

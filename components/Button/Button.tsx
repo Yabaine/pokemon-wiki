@@ -1,38 +1,65 @@
-import React, { FC } from 'react';
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
 import { withBem } from '../../utils/bem';
 import { TypeGameObject } from '../../lib/client/react-query/pokemon/usePokemonLocation';
 
 type Props = {
-  games: TypeGameObject;
-  setMain: React.Dispatch<React.SetStateAction<string>>;
-  currentGame: string;
-  stopInterval?: () => void;
-};
+  children: ReactNode | string;
+  className?: string;
+  pill?: boolean;
+  disabled?: boolean;
+  tagName?: 'button' | 'a' | 'span';
+  type?: 'submit' | 'button';
+  variant?: 'primary' | 'secondary' | 'danger' | 'transparent' | 'neutral' | 'blank'; // add link button
+  size?: 'sm' | 'base' | 'lg';
+} & HTMLAttributes<HTMLElement>;
 
-const Button: FC<Props> = ({ games, setMain, currentGame, stopInterval }) => {
+const Button: ForwardRefRenderFunction<unknown, Props> = (
+  {
+    children,
+    className,
+    pill,
+    disabled = false,
+    tagName = 'button',
+    type = 'button',
+    variant = 'primary',
+    size = 'base',
+    ...props
+  },
+  ref
+) => {
   const b = withBem('button');
 
-  const handleClick = (game: string) => {
-    if (currentGame === game) return;
-    setMain(game);
-    stopInterval && stopInterval();
+  const Tag = tagName;
+  const modifiers = {
+    'size-sm': size === 'sm',
+    'size-base': size === 'base',
+    'size-lg': size === 'lg',
+    primary: variant === 'primary',
+    secondary: variant === 'secondary',
+    neutral: variant === 'neutral',
+    danger: variant === 'danger',
+    transparent: variant === 'transparent',
+    pill,
+    disabled,
   };
+  const _className = className ? ` ${className}` : '';
 
-  let button = Object.entries(games).map(([KEY, value]) => {
-    return (
-      <button
-        key={KEY}
-        disabled={value.length == 0}
-        onClick={() => handleClick(KEY)}
-        role={'button'}
-        className={b(`button${currentGame == KEY ? '-main' : ''}`)}
-      >
-        {KEY}
-      </button>
-    );
-  });
-
-  return <>{button}</>;
+  return (
+    <Tag
+      ref={ref as any}
+      disabled={disabled}
+      type={type}
+      className={b(null, modifiers) + _className}
+      {...props}
+    >
+      {children}
+    </Tag>
+  );
 };
 
-export default Button;
+export default forwardRef(Button);

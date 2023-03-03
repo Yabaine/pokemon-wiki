@@ -40,11 +40,11 @@
       "url": "https://pokeapi.co/api/v2/version/9/"
     },
     {
-      "name": "firered",
+      "name": "fire-red",
       "url": "https://pokeapi.co/api/v2/version/10/"
     },
     {
-      "name": "leafgreen",
+      "name": "leaf-green",
       "url": "https://pokeapi.co/api/v2/version/11/"
     },
     {
@@ -60,11 +60,11 @@
       "url": "https://pokeapi.co/api/v2/version/14/"
     },
     {
-      "name": "heartgold",
+      "name": "heart-gold",
       "url": "https://pokeapi.co/api/v2/version/15/"
     },
     {
-      "name": "soulsilver",
+      "name": "soul-silver",
       "url": "https://pokeapi.co/api/v2/version/16/"
     },
     {

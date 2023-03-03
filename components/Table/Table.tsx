@@ -2,31 +2,28 @@ import React, { FC } from 'react';
 import { withBem } from '../../utils/bem';
 
 type Props = {
-  direction: string;
-  thead: any;
+  type?: 'base' | 'sticky';
+  height?: 'small' | 'auto';
+  thead?: any;
   children: any;
 };
 
-const Table: FC<Props> = ({ thead, children, direction }) => {
+const Table: FC<Props> = ({ thead = null, children, type = 'base', height = 'auto' }) => {
   const b = withBem('table');
 
   return (
-    <div className={b('table-auto')}>
-      <table className={`table-${direction}`}>
-        <thead className={b(`thead-${direction} flex`)}>
+    <table className={b(height)}>
+      {thead && (
+        <thead className={b(`thead-${type}`)}>
           <tr>
             {thead.map((item: string) => {
-              return (
-                <th className={`grid-cols-[${thead.length}]`} key={item}>
-                  {item}
-                </th>
-              );
+              return <th key={item}>{item}</th>;
             })}
           </tr>
         </thead>
-        <tbody className={b(`tbody-${direction}`)}>{children}</tbody>
-      </table>
-    </div>
+      )}
+      <tbody className={b(`tbody`)}>{children}</tbody>
+    </table>
   );
 };
 

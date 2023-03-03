@@ -8,6 +8,9 @@ import { PokemonSpecie } from '../../../types/models/PokemonSpecie';
 import { getGameFromPokedex } from '../../../backend/scrapper/index.mjs';
 import { MainPokedex } from '../../../lib/client/constants';
 import { TypeGroupGenPokeDX } from '../../../types/models/GroupGenPokeDX';
+import Loader from '../../Loader';
+import { TYPES_COLOR } from '../../../model/pokemon/constants/TypesColor';
+import { POKEMON_TYPE } from '../../../model/pokemon/enums/PokemonType';
 
 /* import Region from '../../../backend/scrapper/region.mjs'; */
 
@@ -56,7 +59,15 @@ const BasicData: FC<Props> = ({ data, specie, mapped }) => {
 
   const pokemonTypes = types.map((type) => {
     return (
-      <span key={type.type.name} className={b('type')}>
+      <span
+        key={type.type.name}
+        className={b('type')}
+        style={{
+          backgroundColor: TYPES_COLOR[type.type.name as POKEMON_TYPE].base,
+          outline: `1px solid ${TYPES_COLOR[type.type.name as POKEMON_TYPE].dark}`,
+          textShadow: `1px 2px 3px black`,
+        }}
+      >
         {type.type.name}
       </span>
     );
@@ -77,7 +88,7 @@ const BasicData: FC<Props> = ({ data, specie, mapped }) => {
           let mainGame = isMainPokedex(entry.pokedex.name);
 
           if (!mainGame) {
-            return <tr key={i}></tr>;
+            return null;
           }
 
           let games = getGameFromPokedex(entry.pokedex.name, mapped);
@@ -86,7 +97,7 @@ const BasicData: FC<Props> = ({ data, specie, mapped }) => {
           return (
             <tr key={i} className={'grid-cols-3'}>
               <td className={b('game-indexes')}>{games}</td>
-              <td className={b('type')}>{entry.pokedex.name}</td>
+              <td className={b('type')}>{entry.pokedex.name.replace('-', ' ')}</td>
               <td>{entry.entry_number}</td>
             </tr>
           );
@@ -97,48 +108,50 @@ const BasicData: FC<Props> = ({ data, specie, mapped }) => {
 
   return (
     <>
-      <div className={b('title')}>
-        <span className={b('num')}>#{data.id}</span>
-        <span className={b('name')}> {data.name}</span>
-      </div>
+      <h1 className={b('title')}>
+        {`#${data.id} `} <span>{data.name}</span>
+      </h1>
       <div className={b('')}>
         <div className={b('data')}>
           <div className={b('info')}>
             <div className={b('entry')}>
-              <span>Type:</span>
+              <strong className={b('attribute')}>Type:</strong>
               {pokemonTypes}
             </div>
             <div className={b('entry')}>
-              <span>Species: </span>
+              <strong className={b('attribute')}>Species: </strong>
               <span className={b('detail')}> {species.name}</span>
             </div>
             <div className={b('entry')}>
-              <span>Abilities: </span>
+              <strong className={b('attribute')}>Abilities: </strong>
               {pokemonAbility}
             </div>
             <div className={b('entry')}>
-              <span>Height/Weight: </span>
+              <strong className={b('attribute')}>Height/Weight: </strong>
               <span className={b('detail')}>
                 {' '}
                 {`${height / 10}m / ${weight / 10}kg `}
               </span>
             </div>
             <div className={b('entry')}>
-              <span>First appearance: </span>
-              <span className={b('detail')}>{`GEN ${regex.exec(
-                specie.generation.name
+              <strong className={b('attribute')}>First appearance: </strong>
+              <span className={b('detail')}>{`Generation ${regex.exec(
+                specie.generation.name.toUpperCase()
               )}`}</span>
             </div>
           </div>
           {/*           https://stackoverflow.com/questions/72272821/tailwind-css-table-with-fixed-header-and-scrolling-tbody-vertically
            */}{' '}
-          <Table thead={TheadItems} direction={'vertical'}>
-            <GameIndexes></GameIndexes>
-          </Table>
+          <PokemonCard
+            name={data.name}
+            sprites={data.sprites}
+            color={specie.color.name}
+          />
         </div>
-        <div className={b('sprites')}>
-          <PokemonCard name={data.name} sprites={data.sprites} />
-        </div>
+
+        <Table thead={TheadItems} height={'small'} type={'sticky'}>
+          <GameIndexes></GameIndexes>
+        </Table>
       </div>
     </>
   );

@@ -27,7 +27,6 @@ const Location: FC<Props> = ({ currentGen, locationUrl, mapped }) => {
   };
 
   const { pokemonLocations, games } = usePokemonLocation(locationUrl, currentGen);
-  console.log(pokemonLocations);
   class MapLocation {
     location: string[];
     coordinates: any;
@@ -80,8 +79,6 @@ const Location: FC<Props> = ({ currentGen, locationUrl, mapped }) => {
       };
     }
   }
-
-  console.log(currentGen);
 
   setImage();
 
@@ -155,17 +152,31 @@ const Location: FC<Props> = ({ currentGen, locationUrl, mapped }) => {
     };
   }, []);
 
+  const handleClick = (game: string) => {
+    if (currentGame === game) return;
+    setGame(game);
+    clearInterval(flashTimerRef.current);
+  };
+
   const ButtonsGamesList: FC = () => {
     return (
       <div className={b('games-list')}>
-        <Button
-          games={pokemonLocations}
-          setMain={setGame}
-          currentGame={currentGame}
-          stopInterval={() => {
-            clearInterval(flashTimerRef.current);
-          }}
-        ></Button>
+        {Object.entries(pokemonLocations).map(([KEY, value]) => {
+          return (
+            <Button
+              key={KEY}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClick(KEY);
+              }}
+              disabled={value.length == 0}
+              variant={currentGame === KEY ? 'primary' : 'neutral'}
+              size="base"
+            >
+              {KEY}
+            </Button>
+          );
+        })}
       </div>
     );
   };
