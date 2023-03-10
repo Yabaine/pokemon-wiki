@@ -1,7 +1,7 @@
 .poke-view {
-  @apply flex /* flex-col */  gap-4;
+  @apply flex  gap-4;
 
   &__container {
-    @apply flex flex-wrap flex-col mx-auto pb-12 md:px-6 lg:px-32 xl:px-48 2xl:px-96 w-full;
+    @apply flex flex-wrap flex-col mx-auto pb-12 /* md:px-6  */lg:mx-32 xl:mx-48 2xl:mx-96 w-full bg-red-50 drop-shadow-lg;
   }
 }

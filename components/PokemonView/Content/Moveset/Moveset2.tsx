@@ -3,11 +3,12 @@ import { FC, useEffect, useReducer } from 'react';
 import { getMovesFromPokemonByGen } from '../../../../backend/scrapper/index.mjs';
 import { MOVE_METHODS_ADQUIST } from '../../../../lib/client/constants';
 import { useMoveInfinityDetails } from '../../../../lib/client/react-query/pokemon/useMovesInfinity';
+import { MovementDetails } from '../../../../model/pokemon/interfaces/PokemonMovement.js';
 import { Move, PokemonDetails } from '../../../../types/models/Pokemon';
-import { MovementDetails } from '../../../../types/models/PokemonMovement';
+
 import { withBem } from '../../../../utils/bem';
 import Button from '../../../Button/Button';
-import Table2 from '../../../Table/Table2';
+import Table2 from '../../../Table/TableMovement';
 
 interface Props {
   currentGen: string;

@@ -11,6 +11,7 @@ import SuspenseWrapper from '../../lib/client/providers/SuspenseWrapper';
 import { mapaDataCache } from '../../lib/client/react-query/pokemon/getMapaData';
 import { usePokemon } from '../../lib/client/react-query/pokemon/usePokemon';
 import { usePokeSpecie } from '../../lib/client/react-query/pokemon/usePokeSpecie';
+import { Pokemon } from '../../model/pokemon/class/Pokemon';
 import { TypeGroupGenPokeDX } from '../../types/models/GroupGenPokeDX';
 import { withBem } from '../../utils/bem';
 
@@ -22,6 +23,8 @@ const PokeView: FC = () => {
   const specie = usePokeSpecie(id);
   const mapped = mapaDataCache();
 
+  const poke = new Pokemon(id);
+
   if (!pokemon || !specie || !mapped) return null;
 
   return (
@@ -29,10 +32,10 @@ const PokeView: FC = () => {
       <Navbar baseGen={specie.generation.name} pokemon={pokemon} mapped={mapped} />
       <div className={b('container')}>
         {/* <Labels baseGen={specie.generation.name} pokemon={pokemon} mapped={mapped}></Labels> */}
-        <PokeNav id={id} data={pokemon} />
-        <BasicData data={pokemon} specie={specie} mapped={mapped} />
+        <PokeNav id={id} data={poke.general} />
+        <BasicData data={poke.general} specie={poke.getSpecie()} mapped={mapped} />
         <Tabs tabs={PokemonTabs} />
-        <SuspenseWrapper loaderType="item">
+        <SuspenseWrapper loaderType="content">
           <Content specie={specie} pokemon={pokemon} mapped={mapped}></Content>
         </SuspenseWrapper>
       </div>

@@ -1,3 +1,7 @@
 .page-layout {
   @apply relative w-full gap-4 justify-center items-center;
+
+  /*  &__footer {
+    @apply h-[36rem] bg-black;
+  } */
 }

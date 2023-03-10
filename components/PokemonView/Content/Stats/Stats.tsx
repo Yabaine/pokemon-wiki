@@ -90,7 +90,7 @@ const Stats: FC<Props> = ({ pokemon, specie }) => {
         </div>
         <div>
           <strong>Exp. at lvl 100:</strong>
-          <span>{}</span>
+          <span></span>
         </div>
         <div>
           <strong>Grow rate:</strong>

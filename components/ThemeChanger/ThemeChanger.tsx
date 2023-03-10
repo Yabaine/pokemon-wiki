@@ -20,7 +20,7 @@ const ThemeChanger: FC<Props> = ({ childRef }) => {
 
     const defaultTheme = process.env.NEXT_PUBLIC_DEFAULT_THEME;
     const isValidTheme = themes.includes(defaultTheme);
-
+    console.log(defaultTheme);
     if (isValidTheme) setTheme(defaultTheme);
   }, [theme, isMounted]);
 
@@ -32,16 +32,16 @@ const ThemeChanger: FC<Props> = ({ childRef }) => {
     setTheme(themes[newIndex]);
   };
 
-  useImperativeHandle(childRef, () => ({
+  /* useImperativeHandle(childRef, () => ({
     handleChange,
-  }));
+  })); */
 
   const getThemeAlias = (theme: string) => theme.toLowerCase().replace('theme-', '');
 
   if (!isMounted) return null;
 
   return (
-    <span data-testid="theme-changer" className={b()}>
+    <span data-testid="theme-changer" className={b()} onClick={handleChange}>
       {theme && getThemeAlias(theme)}
     </span>
   );

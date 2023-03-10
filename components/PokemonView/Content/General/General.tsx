@@ -6,21 +6,18 @@ import {
   filterItemsByGen,
   getDescFromGames,
 } from '../../../../backend/scrapper/index.mjs';
-import { Effectivness, EffectivnessTypes } from '../../../../lib/client/constants';
 import { toString } from '../../../../lib/client/imageLoaders';
 import { useEvolutions } from '../../../../lib/client/react-query/pokemon/ddd';
 import { EvolObjectPokemon } from '../../../../lib/client/react-query/pokemon/useEvolutions';
 import { useSeveralPokemon } from '../../../../lib/client/react-query/pokemon/useSeveralPokemon';
 import { GAMES_COLOR } from '../../../../model/games/constants/GamesColors';
-import { GAMES } from '../../../../model/games/enums/Games';
 import { TYPES_COLOR } from '../../../../model/pokemon/constants/TypesColor';
-import { TYPES_DAMAGES } from '../../../../model/pokemon/constants/TypesDamages';
-import { POKEMON_TYPE } from '../../../../model/pokemon/enums/PokemonType';
 import { HeldItem, PokemonDetails } from '../../../../types/models/Pokemon';
 import { FlavorTextEntry, PokemonSpecie } from '../../../../types/models/PokemonSpecie';
 import { withBem } from '../../../../utils/bem';
-import { filterSearchTerm } from '../../../../utils/index';
 import Table from '../../../Table/Table';
+import TableGeneric from '../../../Table/Tablegeneric';
+import { EffectivnesTypesClass } from './effectivness/Effectivness';
 
 interface Props {
   currentGen: string;
@@ -33,18 +30,6 @@ type item = {
   url: string;
 };
 
-/* type desc = {
-  flavor_text: string;
-  language: {
-    name: string;
-    url: string;
-  };
-  version: {
-    name: string;
-    url: string;
-  };
-}[]; */
-
 interface Evol {
   key: string;
   value: number | item | null | string;
@@ -54,33 +39,13 @@ interface To {
   [key: string]: string | number | any | null;
 }
 
-type Tipo = {
-  [key in POKEMON_TYPE]: number;
-};
-
-type PokemonTypes = POKEMON_TYPE;
-
-enum MULTIPLIER_RATES {
-  '(x4) Double effective' = 4,
-  '(x2) Effective' = 2,
-  '(x1) Normal' = 1,
-  '(/2) Resisted' = 0.5,
-  '(/4) Double Resisted' = 0.25,
-  '(0) Null' = 0,
-}
-
-type MultiplierType = {
-  [key in MULTIPLIER_RATES]: POKEMON_TYPE[];
-};
-
 /* Ñ5 */
 
 const General: FC<Props> = ({ currentGen, pokemon, specie }) => {
   const b = withBem('general');
   let evolutionLine: JSX.Element | null = null;
-  let items: JSX.Element | null = null;
-  let description: JSX.Element | null = null;
   // regex replace - for spaces
+  const TYPES = pokemon.types.map((item) => item.type.name);
   const REG_ID = /\/(\d+)\//;
   let pokeID: string[] = [];
 
@@ -228,337 +193,133 @@ const General: FC<Props> = ({ currentGen, pokemon, specie }) => {
     </div>
   ); */
 
-  class EffectivnesTypesClass {
-    baseMultiplier: Tipo;
-    grade: MultiplierType;
-    currentPokemonType: POKEMON_TYPE[];
+  const typesSorted = new EffectivnesTypesClass(TYPES);
 
-    constructor() {
-      this.baseMultiplier = {
-        [POKEMON_TYPE.NORMAL]: 1,
-        [POKEMON_TYPE.FIRE]: 1,
-        [POKEMON_TYPE.WATER]: 1,
-        [POKEMON_TYPE.GRASS]: 1,
-        [POKEMON_TYPE.ELECTRIC]: 1,
-        [POKEMON_TYPE.ICE]: 1,
-        [POKEMON_TYPE.FIGHTING]: 1,
-        [POKEMON_TYPE.POISON]: 1,
-        [POKEMON_TYPE.GROUND]: 1,
-        [POKEMON_TYPE.FLYING]: 1,
-        [POKEMON_TYPE.PSYCHIC]: 1,
-        [POKEMON_TYPE.BUG]: 1,
-        [POKEMON_TYPE.ROCK]: 1,
-        [POKEMON_TYPE.GHOST]: 1,
-        [POKEMON_TYPE.DRAGON]: 1,
-        [POKEMON_TYPE.DARK]: 1,
-        [POKEMON_TYPE.STEEL]: 1,
-        [POKEMON_TYPE.FAIRY]: 1,
-      };
-
-      this.grade = {
-        [MULTIPLIER_RATES['(x4) Double effective']]: [],
-        [MULTIPLIER_RATES['(x2) Effective']]: [],
-        [MULTIPLIER_RATES['(x1) Normal']]: [],
-        [MULTIPLIER_RATES['(/2) Resisted']]: [],
-        [MULTIPLIER_RATES['(/4) Double Resisted']]: [],
-        [MULTIPLIER_RATES['(0) Null']]: [],
-      };
-
-      this.currentPokemonType = [];
-    }
-
-    getCurrentPokemonTypes() {
-      pokemon.types.forEach((item) => this.currentPokemonType.push(item.type.name));
-    }
-
-    calculateEffectivness() {
-      this.currentPokemonType.forEach((type) => {
-        for (const [key, value] of Object.entries(TYPES_DAMAGES)) {
-          this.baseMultiplier[key as PokemonTypes] *= value[type];
-        }
-      });
-    }
-
-    setEffectivnessTable() {
-      for (const [key, value] of Object.entries(this.baseMultiplier)) {
-        this.grade[value as MULTIPLIER_RATES].push(key as PokemonTypes);
-      }
-    }
-  }
-
-  class EffectivnessTable {
-    grades: MultiplierType;
-    constructor(grades: MultiplierType) {
-      this.grades = grades;
-    }
-
-    getValues(value: POKEMON_TYPE[]) {
-      return (
-        <>
-          {' '}
-          {value.length > 0 ? (
-            <td>
-              <ul>
-                {value.map((item) => {
-                  return (
-                    <li
-                      style={{
-                        backgroundColor: TYPES_COLOR[item].base,
-                        outline: `1px solid ${TYPES_COLOR[item].dark}`,
-                        textShadow: `1px 2px 3px black`,
-                      }}
-                      key={item}
-                    >
-                      {item}
-                    </li>
-                  );
-                })}
-              </ul>
-            </td>
-          ) : (
-            <td></td>
-          )}
-        </>
-      );
-    }
-
-    getTable() {
-      return (
-        <div>
-          <h2>Effectivness</h2>
-          <Table>
-            {Object.entries(this.grades).map(([key, value]) => {
-              return (
-                <tr key={key}>
-                  <th>{key}</th>
-                  {this.getValues(value)}
-                </tr>
-              );
-            })}
-          </Table>
-        </div>
-      );
-    }
-  }
-
-  const getEffectivness = new EffectivnesTypesClass();
-  getEffectivness.getCurrentPokemonTypes();
-  getEffectivness.calculateEffectivness();
-  getEffectivness.setEffectivnessTable();
-  const effectivnessTable = new EffectivnessTable(getEffectivness.grade);
-
-  /* const EffectivnesTypes = (): JSX.Element => {
-    let tipos: Tipo = {
-      normal: 1,
-      fire: 1,
-      water: 1,
-      grass: 1,
-      electric: 1,
-      ice: 1,
-      fighting: 1,
-      poison: 1,
-      ground: 1,
-      flying: 1,
-      psychic: 1,
-      bug: 1,
-      rock: 1,
-      ghost: 1,
-      dragon: 1,
-      dark: 1,
-      steel: 1,
-      fairy: 1,
-    };
-    let grade: Grade = {
-      '(x4) double effective': [],
-      '(x2) very effective': [],
-      '(x1) normal': [],
-      '(/2) resited': [],
-      '(/4) double resited': [],
-      '(0) no effect': [],
-    };
-
-    //Recupera las características de los tipos del tipo de pokemon que se esta buscando
-    const types = Effectivness.filter((item: EffectivnessTypes) => {
-      return pokemon.types.find((e) => {
-        if (e.type.name == item.name) {
-          return item.damage;
-        }
-      });
-    });
-
-    //Calcula la efectividad de los tipos del pokemon
-    const calculateEffectivness = (types: EffectivnessTypes[]) => {
-      types.forEach((type) => {
-        grade = {
-          '(x4) double effective': [],
-          '(x2) very effective': [],
-          '(x1) normal': [],
-          '(/2) resited': [],
-          '(/4) double resited': [],
-          '(0) no effect': [],
-        };
-        Effectivness.map((el: EffectivnessTypes) => {
-          for (const [key, value] of Object.entries(el.damage))
-            if (key == type.name) {
-              tipos[el.name] = tipos[el.name] * value;
-              switch (tipos[el.name]) {
-                case 4:
-                  grade['(x4) double effective'].push(el.name);
-                  break;
-                case 2:
-                  grade['(x2) very effective'].push(el.name);
-                  break;
-                case 1:
-                  grade['(x1) normal'].push(el.name);
-                  break;
-                case 0.5:
-                  grade['(/2) resited'].push(el.name);
-                  break;
-                case 0.25:
-                  grade['(/4) double resited'].push(el.name);
-                  break;
-                case 0:
-                  grade['(0) no effect'].push(el.name);
-                  break;
-                default:
-                  break;
-              }
-            }
-        });
-      });
-      return grade;
-    };
-
-    const gradeEf = calculateEffectivness(types);
-
-    const effectivnessTable: JSX.Element = (
+  const Types: FC = () => {
+    return (
       <div>
-        <h3>Effectivness</h3>
-        <table className={b('table')}>
-          <tbody>
-            {Object.entries(gradeEf).map(([key, value]) => {
-              return (
-                <tr key={key}>
-                  <th>{key}</th>
-                  {value.length > 0 ? (
-                    <td>
-                      <div>
-                        {value.map((item) => {
-                          let typeColor = Effectivness.find((el) => {
-                            return el.name == item;
-                          });
-
-                          return (
-                            <span
-                              style={{
-                                backgroundColor: typeColor!.color.base,
-                                outline: `1px solid ${typeColor!.color.darken}`,
-                                textShadow: `1px 2px 3px black`,
-                              }}
-                              key={item}
-                            >
-                              {item}
-                            </span>
-                          );
-                        })}
-                      </div>
-                    </td>
-                  ) : (
-                    <td></td>
-                  )}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>{' '}
+        <h2>Effectivness</h2>
+        <Table>
+          {Object.entries(typesSorted.grade).map(([key, value]) => {
+            return (
+              <tr key={key}>
+                <th>{key}</th>
+                {value.length > 0 ? (
+                  <td>
+                    <ul>
+                      {value.map((item) => {
+                        return (
+                          <li
+                            style={{
+                              backgroundColor: TYPES_COLOR[item].base,
+                              outline: `1px solid ${TYPES_COLOR[item].dark}`,
+                              textShadow: `1px 2px 3px black`,
+                            }}
+                            key={item}
+                          >
+                            {item}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </td>
+                ) : (
+                  <td></td>
+                )}
+              </tr>
+            );
+          })}
+        </Table>
       </div>
     );
-
-    return effectivnessTable;
   };
- */
-
-  /*   const effectivnessTable = EffectivnesTypes(); */
 
   const itemHeld: HeldItem[] = filterItemsByGen(currentGen, pokemon.held_items);
 
-  items = (
-    <div className={b('items')}>
-      <h2>Items</h2>
-      {itemHeld.length > 0 ? (
-        <>
-          <Table>
-            <tr>
-              <th>Item</th>
-              <th>Rate</th>
-              <th>Game</th>
-            </tr>
-            {itemHeld.map((details) => {
-              return (
-                <tr key={details.item.name}>
-                  <td>{details.item.name.replace('-', ' ')}</td>
-                  <td className="item">
-                    {details.version_details.map((item, id) => {
-                      return <span key={id}>{`${item.rarity}% `}</span>;
-                    })}
-                  </td>
-                  <td className="item">
-                    {details.version_details.map((item, id) => {
-                      return <span key={id}>{item.version.name.replace('-', ' ')}</span>;
-                    })}
-                  </td>
-                </tr>
-              );
-            })}
-          </Table>
-        </>
-      ) : (
-        <p className={b('no-items')}>{`${pokemon.name} has no items in ${currentGen}`}</p>
-      )}
-    </div>
-  );
+  const Items: FC = () => {
+    return (
+      <div className={b('items')}>
+        <h2>Items</h2>
+        {itemHeld.length > 0 ? (
+          <>
+            <Table>
+              <tr>
+                <th>Item</th>
+                <th>Rate</th>
+                <th>Game</th>
+              </tr>
+              {itemHeld.map((details) => {
+                return (
+                  <tr key={details.item.name}>
+                    <td>{details.item.name.replace('-', ' ')}</td>
+                    <td className="item">
+                      {details.version_details.map((item, id) => {
+                        return <span key={id}>{`${item.rarity}% `}</span>;
+                      })}
+                    </td>
+                    <td className="item">
+                      {details.version_details.map((item, id) => {
+                        return (
+                          <span key={id}>{item.version.name.replace('-', ' ')}</span>
+                        );
+                      })}
+                    </td>
+                  </tr>
+                );
+              })}
+            </Table>
+          </>
+        ) : (
+          <p
+            className={b('no-items')}
+          >{`${pokemon.name} has no items in ${currentGen}`}</p>
+        )}
+      </div>
+    );
+  };
 
   const desc: FlavorTextEntry[] = getDescFromGames(
     currentGen,
     specie.flavor_text_entries
   );
-
-  description = (
-    <div className={b('description')}>
-      <h2>Description</h2>
-      {desc.length > 0 ? (
-        <Table>
-          {desc.map((el, id) => (
-            <tr key={id}>
-              <th
-                style={{
-                  backgroundColor: `${GAMES_COLOR[el.version.name].base}`,
-                }}
-              >
-                {el.version.name.replace('-', ' ')}
-              </th>
-              <td
-                style={{
-                  backgroundColor: `${GAMES_COLOR[el.version.name].light}`,
-                }}
-              >
-                {el.flavor_text}
-              </td>
-            </tr>
-          ))}
-        </Table>
-      ) : (
-        <p>Description not available </p>
-      )}
-    </div>
-  );
+  const Description: FC = () => {
+    return (
+      <div className={b('description')}>
+        <h2>Description</h2>
+        {desc.length > 0 ? (
+          <Table>
+            {desc.map((el, id) => (
+              <tr key={id}>
+                <th
+                  style={{
+                    backgroundColor: `${GAMES_COLOR[el.version.name].base}`,
+                  }}
+                >
+                  {el.version.name.replace('-', ' ')}
+                </th>
+                <td
+                  style={{
+                    backgroundColor: `${GAMES_COLOR[el.version.name].light}`,
+                  }}
+                >
+                  {el.flavor_text}
+                </td>
+              </tr>
+            ))}
+          </Table>
+        ) : (
+          <p>Description not available </p>
+        )}
+      </div>
+    );
+  };
 
   return (
     <article className={'general'}>
       {evolutionLine}
-      {effectivnessTable.getTable()}
-      {items}
-      {description}
+      <Types></Types>
+      <Items></Items>
+      <Description></Description>
     </article>
   );
 };

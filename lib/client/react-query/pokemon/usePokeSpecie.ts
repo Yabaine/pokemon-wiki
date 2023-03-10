@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '../axios';
-import { PokemonSpecie } from '../../../../types/models/PokemonSpecie';
+import { PokemonSpecie } from '../../../../model/pokemon/interfaces/PokemonSpecie';
 
 /* const getSpecie = async (id: string) => {
   const response = await axiosInstance.get<PokemonSpecie>(

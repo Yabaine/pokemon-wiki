@@ -1,8 +1,8 @@
 .moveset {
-  @apply flex flex-col gap-5 w-full;
+  @apply flex flex-col gap-5 w-full min-h-[1000px];
 
   &__games {
-    @apply flex flex-row w-full gap-4 m-auto overflow-x-scroll no-scrollbar;
+    @apply flex flex-row w-full gap-4 mx-auto overflow-x-scroll no-scrollbar;
   }
 
   &__game {

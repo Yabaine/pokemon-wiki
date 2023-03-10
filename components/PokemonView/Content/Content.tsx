@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { useCurrentGen, useMainTab } from '../../../lib/client/providers/Zustand';
+import { PokemonSpecie } from '../../../model/pokemon/interfaces/PokemonSpecie';
 import { TypeGroupGenPokeDX } from '../../../types/models/GroupGenPokeDX';
 import { PokemonDetails } from '../../../types/models/Pokemon';
-import { PokemonSpecie } from '../../../types/models/PokemonSpecie';
 import { withBem } from '../../../utils/bem';
 import General from './General/General';
 import Location from './Location/Location';
-import Moves2 from './Moveset/Moveset2';
+import Moves2 from './Moveset/Moveset';
 import Stats from './Stats';
 
 type Props = {
@@ -41,6 +41,7 @@ const Content: FC<Props> = ({ pokemon, specie, mapped }) => {
       break;
     case 'moveset':
       content = <Moves2 currentGen={currentGen} pokemon={pokemon} />;
+      /* content = <Moves moves={pokemon.moves} />; */
       break;
     default:
       content = <General currentGen={currentGen} specie={specie} pokemon={pokemon} />;

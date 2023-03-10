@@ -13,7 +13,7 @@ export default function App({
 }: AppProps) {
   const [queryClient] = useState(() => new QueryClient(getQueryClientConfig()));
   return (
-    /*  <ThemeProvider themes={themes} attribute="class"> */
+    /* <ThemeProvider themes={themes} attribute="class"> */
     <QueryClientProvider client={queryClient}>
       <Hydrate state={dehydratedState}>
         <Component {...pageProps} />

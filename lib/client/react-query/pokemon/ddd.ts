@@ -61,6 +61,9 @@ export const useEvolutions = (id: string) => {
     (value, i, array) => array.findIndex((v2) => v2.name === value.name) === i
   ); */
 
+  console.log(query.data, 'query');
+  console.log(evolutions, 'evolutions');
+
   return evolutions;
 };
 
@@ -126,6 +129,26 @@ export interface EvolutionDetail {
   trade_species: null;
   trigger: Species;
   turn_upside_down: boolean;
+}
+
+export interface Species {
+  name: string;
+  url: string;
+}
+
+//--------------------------------------------/
+
+export interface EvolutionChain {
+  baby_trigger_item: null;
+  chain: Chain;
+  id: number;
+}
+
+export interface Chain {
+  evolution_details: EvolutionDetail[];
+  evolves_to: Chain[];
+  is_baby: boolean;
+  species: Species;
 }
 
 export interface Species {

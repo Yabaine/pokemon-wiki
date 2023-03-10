@@ -3,14 +3,15 @@ import { withBem } from '../../../utils/bem';
 import { Sprites } from '../../../types/models/Pokemon';
 import Table from '../../Table';
 import PokemonCard from '../PokemonCard';
-import { PokemonDetails } from '../../../types/models/Pokemon';
-import { PokemonSpecie } from '../../../types/models/PokemonSpecie';
+
 import { getGameFromPokedex } from '../../../backend/scrapper/index.mjs';
 import { MainPokedex } from '../../../lib/client/constants';
 import { TypeGroupGenPokeDX } from '../../../types/models/GroupGenPokeDX';
 import Loader from '../../Loader';
 import { TYPES_COLOR } from '../../../model/pokemon/constants/TypesColor';
 import { POKEMON_TYPE } from '../../../model/pokemon/enums/PokemonType';
+import { PokemonDetails } from '../../../model/pokemon/interfaces/Pokemon';
+import { PokemonSpecie } from '../../../model/pokemon/interfaces/PokemonSpecie';
 
 /* import Region from '../../../backend/scrapper/region.mjs'; */
 

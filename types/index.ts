@@ -1,4 +1,4 @@
 /**
  * ErrorBoundary and Loader fallback type
  */
-export type FallbackType = 'screen' | 'page' | 'item' | 'test';
+export type FallbackType = 'screen' | 'page' | 'item' | 'test' | 'content';

@@ -1,178 +1,117 @@
-import React, { FC, useEffect, useState } from 'react';
+import { UseQueryResult } from '@tanstack/react-query';
+import { FC, useDeferredValue, useEffect } from 'react';
 import { getMovesFromPokemonByGen } from '../../../../backend/scrapper/index.mjs';
 import { MOVE_METHODS_ADQUIST } from '../../../../lib/client/constants';
-import { useMoveDetails } from '../../../../lib/client/react-query/pokemon/useMovesDetails';
+import SuspenseWrapper from '../../../../lib/client/providers/SuspenseWrapper';
+
+import { useMoveInfinityDetails } from '../../../../lib/client/react-query/pokemon/useMovesInfinity';
+import { PokemonMoveset } from '../../../../model/pokemon/class/Movements';
+import { ACTION_TYPES } from '../../../../model/table/enums/ActionsTable';
 import { Move, PokemonDetails } from '../../../../types/models/Pokemon';
 import { MovementDetails } from '../../../../types/models/PokemonMovement';
-import { PokemonSpecie } from '../../../../types/models/PokemonSpecie';
 import { withBem } from '../../../../utils/bem';
 import Button from '../../../Button/Button';
-import Table from '../../../Table/Table';
+import { useMovementReducer } from '../../../Hooks/useMovements';
+import Table2 from '../../../Table/TableMovement';
 
 interface Props {
   currentGen: string;
   pokemon: PokemonDetails;
-  specie: PokemonSpecie;
 }
 
-const Moves: FC<Props> = ({ currentGen, pokemon }) => {
+const Moves2: FC<Props> = ({ currentGen, pokemon }) => {
   const b = withBem('moveset');
-
-  interface MoveComplete extends Move {
-    details?: MovementDetails;
-  }
 
   const { moves, games }: { moves: Move[]; games: string[] } = getMovesFromPokemonByGen(
     currentGen,
     pokemon
   );
 
-  const movesURl = moves.map((el) => el.move.url);
-  const moveDetails = useMoveDetails(movesURl);
+  const { state, dispatch } = useMovementReducer(games);
 
-  const [currentGame, setGame] = useState(games[0]);
+  // regex keep only numbers
+  const regex = /https:\/\/pokeapi.co\/api\/v2\/move\/(?<movement>\d*)/;
 
-  const handleClick = (game: string) => {
-    setGame(game);
+  // Ñ1
+
+  const movesURl = moves.map((el) => el.move.url.match(regex)?.groups?.movement || '');
+
+  const {
+    query,
+    isLoading,
+  }: {
+    query: UseQueryResult<MovementDetails, unknown>[];
+    isLoading: boolean;
+  } = useMoveInfinityDetails(state.size, movesURl);
+
+  const changeGame = (game: string) => {
+    dispatch({ type: ACTION_TYPES.CURRENT_GAME, payload: game });
+  };
+
+  const showMore = () => {
+    dispatch({ type: ACTION_TYPES.SHOW_MORE, payload: movesURl.length });
   };
 
   useEffect(() => {
-    setGame(games[0]);
+    dispatch({ type: ACTION_TYPES.CURRENT_GAME, payload: games[0] });
   }, [currentGen]);
 
-  class Moveset {
-    moves: MoveComplete[];
-    games: string[];
-    constructor(moves: MoveComplete[], games: string[]) {
-      this.moves = moves;
-      this.games = games;
-    }
+  useEffect(() => {
+    dispatch({ type: ACTION_TYPES.SIZE });
+  }, [pokemon.name]);
 
-    getMovesFilteredByType(type: string) {
-      return this.moves
-        .map((move: MoveComplete) => {
-          return {
-            ...move,
-            details: moveDetails.find((el) => el.name === move.move.name),
-            version_group_details: move.version_group_details.filter(
-              (el) => el.move_learn_method.name === type
-            ),
-          };
-        })
-        .filter((el) => el.version_group_details.length > 0);
-    }
-  }
+  if (isLoading === true)
+    return (
+      <article className={'moveset'}>
+        <div className={b('games')}>
+          {games.map((game) => {
+            return (
+              <Button key={game} className="game" onClick={() => changeGame(game)}>
+                {game}
+              </Button>
+            );
+          })}
+        </div>
+      </article>
+    );
 
-  class MovesTable {
-    moveset: Moveset;
-    movesByType: MoveComplete[][];
-    table: JSX.Element;
-    constructor(moveset: Moveset) {
-      this.moveset = moveset;
-      this.movesByType = this.getMovesByTypes();
-      this.table = this.getTable();
-    }
+  if (isLoading === false) {
+    const moveDetail = query.map((el) => el.data) as MovementDetails[];
+    const moveset = new PokemonMoveset(moves, moveDetail, state);
+    /* const deferredQuery = useDeferredValue(moveset); */
 
-    getMovesByTypes() {
-      return MOVE_METHODS_ADQUIST.map((tipo) => {
-        return this.moveset.getMovesFilteredByType(tipo);
-      });
-    }
-
-    /* rowTable(moves: MoveComplete[]) {
-      for (let i = 0; i < moves.length; i++) {
-        return (
-          <tr key={i + 'i'}>
-            {moves[i].version_group_details.map((el, id: number) => {
-              if (el.version_group.name === currentGame) {
-                return (
-                  <React.Fragment key={moves[i].move.name}>
-                    <td className={b('machine-name')}>{moves[i].move.name}</td>
-                    {el.move_learn_method.name == 'level-up' && (
-                      <td>{el.level_learned_at}</td>
-                    )}
-                    <td>{`Power ${moves[i].details?.power}`} </td>
-                  </React.Fragment>
-                );
-              }
-            })}
-          </tr>
-        );
-      }
-
-  
-    } */
-
-    getTable() {
-      return (
-        <div className={b('moves-container')}>
-          {this.movesByType.map((moves, id) => {
-            if (moves.length === 0) return null;
-
+    return (
+      <article className={'moveset'}>
+        <div className={b('games')}>
+          {games.map((game) => {
+            return (
+              <Button key={game} className="game" onClick={() => changeGame(game)}>
+                {game}
+              </Button>
+            );
+          })}
+        </div>
+        <div className={b('moveset-container')}>
+          {moveset.movesByMethod.map((moviments, id) => {
+            if (moviments.length === 0) return null;
             return (
               <div key={MOVE_METHODS_ADQUIST[id]}>
                 <h2 className={b('title')}>{MOVE_METHODS_ADQUIST[id]}</h2>
-                <Table>
-                  <tr>
-                    <th>Move</th>
-                    {MOVE_METHODS_ADQUIST[id] === 'level-up' && <th>Level</th>}
-                    <th>Power</th>
-                    <th>Type</th>
-                    <th>Class</th>
-                  </tr>
-                  {moves.map((item, id) => {
-                    return (
-                      <tr key={id + 'i'} className={b('moves')}>
-                        {item.version_group_details.map((el, id: number) => {
-                          if (el.version_group.name === currentGame) {
-                            return (
-                              <React.Fragment key={item.move.name}>
-                                <td>{item.move.name.replace(/-/g, ' ')}</td>
-                                {el.move_learn_method.name == 'level-up' && (
-                                  <td>{el.level_learned_at}</td>
-                                )}
-                                <td>
-                                  {item.details?.power == null
-                                    ? '/'
-                                    : item.details?.power}{' '}
-                                </td>
-                                <td>{item.details?.type.name}</td>
-                                <td>{item.details?.damage_class.name}</td>
-                              </React.Fragment>
-                            );
-                          }
-                        })}
-                      </tr>
-                    );
-                  })}
-                </Table>
+                <Table2
+                  datos={moviments}
+                  showMore={showMore}
+                  height={movesURl.length <= state.size! ? 'auto' : 'small'}
+                  method={MOVE_METHODS_ADQUIST[id]}
+                ></Table2>
               </div>
             );
           })}
         </div>
-      );
-    }
+      </article>
+    );
   }
 
-  const moveset = new Moveset(moves, games);
-  const movesTable = new MovesTable(moveset);
-
-  console.log(movesTable.movesByType);
-
-  return (
-    <article className={'moveset'}>
-      <div className={b('games')}>
-        {games.map((game) => {
-          return (
-            <Button key={game} className="game" onClick={() => handleClick(game)}>
-              {game}
-            </Button>
-          );
-        })}
-      </div>
-      <div className={b('moveset-container')}>{movesTable.table}</div>
-    </article>
-  );
+  return <div>Something went wrong</div>;
 };
 
-export default Moves;
+export default Moves2;

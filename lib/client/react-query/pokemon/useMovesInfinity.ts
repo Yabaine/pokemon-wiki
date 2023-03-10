@@ -14,8 +14,6 @@ const getMovementDetails = async (id: string) => {
 };
 
 export const useMoveInfinityDetails = (size: number = 20, ids: string[]) => {
-  let movesDet: MovementDetails[] = [];
-
   const query = useQueries({
     queries: ids.slice(0, size).map((id) => {
       return {
@@ -25,11 +23,7 @@ export const useMoveInfinityDetails = (size: number = 20, ids: string[]) => {
     }),
   });
 
-  query.map((item) => {
-    movesDet.push(item.data!);
-  });
+  const isLoading = query.some((item) => item.status !== 'success');
 
-  const isLoading = query.some((item) => item.status === 'loading');
-
-  return { movesDet, query, isLoading };
+  return { query, isLoading };
 };

@@ -51,7 +51,7 @@ interface TableDataMethod {
 
 //Ñ4
 
-const Table2 = <T extends unknown>({
+const TableMovement = <T extends unknown>({
   datos,
   thead = true,
   theadType = 'sticky',
@@ -255,4 +255,4 @@ const Table2 = <T extends unknown>({
   );
 };
 
-export default Table2;
+export default TableMovement;

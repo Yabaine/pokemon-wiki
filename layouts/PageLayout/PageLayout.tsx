@@ -21,6 +21,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
               <SuspenseWrapper loaderType="page">{children}</SuspenseWrapper>
             </ErrorBoundaryWrapper>
           </main>
+          <footer className={b('footer')}></footer>
         </div>
       </SuspenseWrapper>
     </ErrorBoundaryWrapper>

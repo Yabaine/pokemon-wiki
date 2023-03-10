@@ -2,9 +2,10 @@ import React, { FC, useMemo } from 'react';
 import { withBem } from '../../../utils/bem';
 import { nextPrevPoke } from '../../../lib/client/react-query/pokemon/useNextPrevPoke';
 import Image from 'next/image';
-import { PokemonDetails, Sprites } from '../../../types/models/Pokemon';
 import { toString } from '../../../lib/client/imageLoaders';
 import Link from 'next/link';
+import { PokemonDetails } from '../../../model/pokemon/interfaces/Pokemon';
+import ThemeChanger from '../../ThemeChanger';
 
 type Props = {
   id: string;
@@ -73,6 +74,7 @@ const PokeNav: FC<Props> = ({ data }) => {
           </div>
         </Link>
       )}
+      <ThemeChanger></ThemeChanger>
     </div>
   );
 };
